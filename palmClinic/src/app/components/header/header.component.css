@@ -1,0 +1,95 @@
+.container{
+    width: 100%;
+}
+nav{
+    background-color:#0E1011;
+    height: 150px;
+    position: relative;
+    z-index: -2;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-weight: 600px;
+    font-size: 60px;
+    z-index: 0;
+}
+
+button{
+    color: white;
+    border: 3px solid white;
+    background-color: #AACC00;
+    width: 154.29px;
+    height: 40px;
+    border-radius: 10px;
+    
+}
+
+form a{
+ color: white;
+}
+
+.lightyellow{
+    width:130px;
+    height: 130px;
+    background-color: #BFD200;
+    border-radius: 50%;
+    filter: blur(30px);  
+    position: absolute; 
+    left: 1100px;
+    opacity: .7; 
+    z-index:-1 ;
+    transition: all 10s;
+    transform: translateX(-100px);
+    animation-name: firstLight;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+.lightgreen{
+    width:130px;
+    height: 130px;
+    background-color: #007F5F;
+    border-radius: 50%;
+    filter: blur(30px); 
+    opacity: .7; 
+    position: absolute; 
+    z-index:-1 ;
+    animation-name: secondLight;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+
+}
+
+@keyframes firstLight{
+    0%{
+       left: 1100px;
+       background-color: #BFD200;
+    }
+    50%{
+        left: 100px;
+        background-color: #007F5F;
+    }
+    100%{
+       left: 1100px;
+       background-color: #BFD200;
+    }
+
+}
+
+@keyframes secondLight{
+    0%{
+       left: 100px;
+       background-color: #007F5F;
+
+    }
+    50%{
+        left: 1100px;
+        background-color: #BFD200;
+
+    }
+    100%{
+        left: 100px;
+        background-color: #007F5F;
+    }
+}  

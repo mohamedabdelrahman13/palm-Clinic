@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr'; 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+:root{
+  --mainColor:#30FF4F;
+  --backColor: #0E1011;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body { height: 100%;   }
+body {
+   margin: 0; font-family:Quicksand; 
+  height: fit-content;;
+  background-color:var(--backColor);
+  position: relative;
+  z-index: 0;
+  /* overflow: hidden; */
+ }
+/* // <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 300 to 700 */
+
+.quicksand-do {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+} 
+
+
+.custom-toast{
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  /* position: sticky; */
+  transform: translate(-50% , -50%);
+}
