@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { organs } from '../models/organs.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -21,14 +22,14 @@ export class SymptomsService {
   
   
  
-  constructor() { 
+  constructor(private http:HttpClient) { 
     
     this.symptomsList=[
-      {id:1 , name:"Root" , imgUrl:"assets/roots2.jpg" , sympts:["Vascular discoloration to the reddish-brown" , "Dark lesions on the root" , "" , ""] , relatedSympts:["" , "" , "" , ""] , selected:false},
+      {id:1 , name:"Root" , imgUrl:"assets/roots2.jpg" , sympts:["Roots appear black, brown, or mushy instead of firm and white" , "Dark lesions on the root" , "A foul smell emanates from the root area" , "vascular discoloration to the reddish-brown or pink in the internal tissue of the roots and lower trunk"] , relatedSympts:["" , "" , "" , ""] , selected:false},
       {id:2 , name:"Leaves" , imgUrl:"assets/leaves2.jpg", sympts:["Fresh Leaves" , "Old Leaves" , "Fresh and old Leaves" , "Leaves bases"] , relatedSympts:["Yellowing and wilting" , "A reddish brown or dark-brown stripe along the midrib of the leaves" , "Very small black fungal bodies appear on the leaf blades, especially on the oldest leaves" , "Related brownish discoloration and rot"], selected:false},
-      {id:3 , name:"Floral Inflouroscence" ,  imgUrl:"assets/floralInflouroscence.jpg" , sympts:["Black discoloration" , "Pink discoloration" , "" , ""] , relatedSympts:["" , "" , "" , ""], selected:false},
-      {id:4 , name:"Buds" , imgUrl:"assets/buds.jpg" , sympts:["Death of the central cluster leaves OR bending head" , "" , "" , ""] , relatedSympts:["" , "" , "" , ""], selected:false},
-      {id:5 , name:"Fruits" , imgUrl:"assets/fruits.jpg" , sympts:["Fruit rot and drop" , "" , "" , ""] , relatedSympts:["" , "" , "" , ""], selected:false}
+      {id:3 , name:"Floral Inflouroscence" ,  imgUrl:"assets/floralInflouroscence.jpg" , sympts:["Black discoloration" , "Pink discoloration" , "Infected inflorescences are soft and water-soaked, and a foul smell may emanate" , ""] , relatedSympts:["" , "" , "" , ""], selected:false},
+      {id:4 , name:"Buds" , imgUrl:"assets/buds.jpg" , sympts:["Death of the terminal bud, or bending head of the palm and wilt" , "Heart or Trunk Rot" , "" , ""] , relatedSympts:["" , "" , "" , ""], selected:false},
+      {id:5 , name:"Fruits" , imgUrl:"assets/fruits.jpg" , sympts:["Brown or black spots on the fruits" , "Soft, water-soaked spots on the fruits" , "Wilting and dropping fruits prematurely" , "Visible fungal growth on the fruit" , "Emanating a foul smell from the rotting fruits"] , relatedSympts:["" , "" , "" , ""], selected:false}
     ]
     // this.symptomsList = [
     //   {id:1 , name:"Root" , imgUrl:"assets/root.png" , s1:"Vascular discoloration to the reddish-brown" , s2:"Dark lesions on the root" , s3:null , s4:null , relatedS1:null, relatedS2: null , relatedS3:null, relatedS4:null } ,
@@ -69,5 +70,8 @@ export class SymptomsService {
     let organSymptoms = this.symptomsList.find((organ) => organ.id == id)
     return organSymptoms;
   }
-
+  
+  getResults(){
+    return this.http.post('http://palmclinic.runasp.net/api/Diseases/find-by-symptoms', this.symptoms)
+  }
 }

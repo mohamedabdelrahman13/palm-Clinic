@@ -10,14 +10,27 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { ConsultantComponent } from './components/consultant/consultant.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ResultsComponent } from './components/results/results.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarAction,MatSnackBarActions,MatSnackBarLabel} from '@angular/material/snack-bar';
+// import {MatSnackBar} from '@angular/material/snack-bar';
+// import {MatButtonModule} from '@angular/material/button';
+// import {MatInputModule} from '@angular/material/input';
+// import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    HomePageComponent,
+    ConsultantComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +40,19 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     }), 
     MatIconModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    MatSnackBarAction,
+    MatSnackBarActions,
+    MatSnackBarLabel,
+    // MatSnackBar,
+    // MatButtonModule,
+    // MatInputModule,
+    // MatFormFieldModule
+
+    
   ],
   providers: [
     provideAnimationsAsync('noop')

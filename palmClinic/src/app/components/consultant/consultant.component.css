@@ -1,0 +1,257 @@
+.Consultant-form{
+    overflow: hidden;
+}
+.form-content{
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.804);
+    padding: 30px 80px;
+}
+.form-content legend{
+    font-size: 50px;
+    font-weight: bolder;
+    margin: 0;
+    
+}
+.form-content h3{
+    font-size: 35px;
+    font-weight: bolder;
+    color: gray;
+    margin-bottom: 70px;
+
+
+}
+.form-content .input{
+    background-color: rgba(96, 95, 95, 0.5);
+    height: 65px;
+    font-size: 30px;
+    color: white;
+    border-radius: 10px;
+}
+.form-content .input:focus{
+    box-shadow: none;
+    border:3px solid white ;
+}
+.input::-webkit-input-placeholder {
+    color: white;
+  }
+.input:-webkit-autofill {
+    background-color:rgba(96, 95, 95, 0.5) !important;
+    color: white !important; 
+}
+/* For Chrome, Safari, Edge */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+ /* background-color:rgba(96, 95, 95, 0.5);
+ -webkit-background-color:rgba(96, 95, 95, 0.5); */
+  -webkit-box-shadow: 0 0 0px 1000px rgba(96, 95, 95, 0.776) inset !important;  
+   box-shadow: 0 0 0px 1000px rgba(72, 72, 72, 0.5) inset !important;
+  color: white !important;
+}
+
+
+input:-moz-autofill {
+    background-color:rgba(96, 95, 95, 0.5) !important;
+    color: white !important;  
+  }
+
+select{
+    background-color: rgba(96, 95, 95, 0.5);
+    height: 65px;
+    font-size: 30px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+div.row{
+    margin: 0;
+}
+select:focus{
+    background-color: rgba(83, 82, 82, 0.5);
+    box-shadow: none;
+    border:3px solid white ;
+}
+label{
+    font-size: 45px;
+    margin-left: 5px;
+    font-weight: bolder;
+    color: black;
+}
+.message{
+    background-color: rgba(96, 95, 95, 0.5);
+    height: 400px;
+    width: 100%;
+    font-size: 45px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+.message:focus{
+    outline: none;
+    box-shadow: none;
+    border:3px solid white ;
+}
+
+#userSugg{
+    font-size: 23;
+    height: 200px;
+}
+
+/* photo uploading style */
+div h2{
+    font-size: 45px;
+    margin-left: 5px;
+    font-weight: bolder;
+    color: black;
+}
+.photoInput{
+    display: inline-block;
+    background-color: rgba(96, 95, 95, 0.5);
+    border-radius: 10px;
+    width: 300px;
+    height: 300px;
+}
+input[type="file"]{
+    display: none;
+}
+
+div.addSign{
+    position: relative;
+}
+div.addSign span{
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 80px;
+}
+
+.SendBtn{
+    width: 370px;
+    height: 80px;
+    background-image: linear-gradient(to bo);
+}
+.submit{
+    text-align: right;
+}
+
+div.phone-title.row{
+    margin: 0px;
+}
+
+@media(min-width:990px){
+  .phone{
+    padding: 0;
+  }
+  .title{
+    padding: 0;
+  }
+}
+
+/* animation */
+.light{
+    position: relative;
+}
+.lightyellow{
+    width:200px;
+    height:200px;
+    background-color: #BFD200;
+    border-radius:50%;
+    filter: blur(100px);
+    position: absolute;
+    left:500px;
+    top: 80%;
+    animation-name: firstLight;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    z-index: 1;
+}
+
+.lightgreen{
+    width:200px;
+    height:200px;
+    background-color:#007F5F;
+    border-radius:50%;
+    filter: blur(100px);
+    position: absolute;
+    top: 0px;
+    left: 0;
+    animation-name: secondLight;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    z-index: 1;
+    overflow: hidden;
+}
+
+
+@keyframes firstLight{
+    0%{
+        left: 800px;
+        top: 50%;
+    }
+
+    25%{
+        left:0;
+        top: 600px;
+    }
+
+    50%{
+        left:0px;
+        top: 600px;
+    }
+    75%{
+       left:300px;
+       top: 300px;
+    }
+    100%{
+        left:  800px;
+        top: 50%;
+    }
+
+    
+
+} 
+
+@keyframes secondLight{
+    0%{
+        left: 800px;
+        top: 600px;
+    }
+
+    25%{
+        left:0;
+        top: 600px;
+    }
+
+    50%{
+        left:0;
+        top: 600px;
+    }
+    75%{
+       left:0;
+       top: 300px;
+    }
+    100%{
+        left: 800px;
+        top: 600px;
+    }
+}
+
+/* spinner */
+.loading{
+    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    position: fixed;
+}
+.spinner-logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+}

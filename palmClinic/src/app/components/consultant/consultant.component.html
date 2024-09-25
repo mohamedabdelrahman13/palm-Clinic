@@ -1,0 +1,91 @@
+<section class="Consultant-form container">
+    <!-- <div class="success-message">
+        <div>
+            <h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora dolorum molestiae, quos at eos deserunt maiores, hic cumque perferendis quo nobis. Id reprehenderit tenetur recusandae, quas cupiditate facere maxime totam.</h2>
+        </div>
+        <div>
+            <button class="mainBtn">done</button>
+        </div>
+    </div> -->
+    <div class="form-content">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <legend>Consultation form</legend>
+            <h3>Please fill in your information and we will review your consultation and contact you</h3>
+
+            <div class="mb-5">
+              <input #Name type="text" formControlName="Name" class="form-control input" id="exampleInputName1" placeholder="Name" aria-describedby="name" pattern="">
+              <div  [hidden]="loginForm.get('Name')?.untouched || !loginForm.get('Name')?.errors?.['required']" class="bg-danger" style=" padding: 0 5px; width: 100%; height: 30px; color: white; line-height: 30px;">
+                    Name is required
+              </div>
+              <!-- <div [hidden]="loginForm.get('Name')?.valid || loginForm.get('Name')?.errors?.['required']" class="bg-danger" style="padding: 0 5px; width: 100%; height: 30px; color: white; line-height: 30px;">
+                    Name must be more than 5 characters
+              </div> -->
+            </div>
+            <div class="mb-5 row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-5 mb-sm-5 mb-md-5 mb-lg-0 p-0 pe-lg-5 title" >
+                    <select style="width: 100%;" formControlName="Title" class="" name="Title" id="" >
+                        <option value="Student">Student</option>
+                        <option value="Researcher">Researcher</option>
+                        <option value="Dr.">Dr.</option>
+                        <option value="other">other</option>
+                    </select>
+                </div>
+                <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 p-0 ps-lg-5 phone" >
+                    <input width="100%" type="text" formControlName="Phone" class="form-control input" id="exampleInputPhone" placeholder="Phone number" aria-describedby="phoneHelp" pattern="^[0-9]+$">
+                    <div [hidden]="loginForm.get('Phone')?.untouched || !loginForm.get('Phone')?.errors?.['required']" class="bg-danger" style="padding: 0 5px; width: 100%; height: 30px; color: white; line-height: 30px;">
+                        Phone is required
+                    </div>    
+                    <div [hidden]="loginForm.get('Phone')?.valid || loginForm.get('Phone')?.untouched" class="bg-danger" style="padding: 0 5px; width: 100%; height: 30px; color: white; line-height: 30px;">
+                       phone must contain numbers only
+                    </div>    
+                </div>
+            </div>
+            <div class="mb-5">
+                  <input type="email" formControlName="Email" class="form-control input" id="exampleInputEmail1" placeholder="Email" aria-describedby="emailHelp">
+                  <div [hidden]="loginForm.get('Email')?.untouched || !loginForm.get('Email')?.errors?.['required']" class="bg-danger" style="padding: 0 5px; width: 100%; height: 30px; color: white; line-height: 30px;">
+                     Email is required
+                  </div>   
+             </div>
+             <div class="mb-5">
+                   <label for="message"><mat-icon style="font-size: 27px; width: 27px; height: 27px; margin-right: 5px;">message</mat-icon>message:</label>
+                   <textarea formControlName="messsage"  name="message" class="message"></textarea>
+                   <div [hidden]="loginForm.get('messsage')?.untouched || !loginForm.get('messsage')?.errors?.['required']" class="bg-danger" style="padding: 0 5px; width: 100%; height: 30px; color: white; line-height: 30px;">
+                    Message is required
+                   </div>  
+             </div>
+             <div class="mb-5">
+                 <label for="userSugg"><mat-icon style="font-size: 27px; width: 27px; height: 27px; margin-right: 5px;">lightbulb</mat-icon>Please share your expectations for our future services:</label>
+                 <textarea formControlName="Suggestions" class="message" name="userSugg" id="userSugg"></textarea>
+             </div>
+            
+                <div class="mb-5 row">
+                   <h2>
+                       upload photo
+                       <mat-icon style="font-size: 27px; width: 27px; height: 27px; margin-right: 5px;">
+                           photo
+                       </mat-icon>
+                   </h2>
+                   <label class="photoInput" for="photo">    
+                           <input id="photo" style="width: 400px;" class=" col" type="file" (change)="onSelectimg($event)">
+                           <div class="addSign">
+                               <span>+</span>
+                           </div>
+                   </label>
+                    <div class="ms-1 col"  style="width: 300px; height: 300px;" *ngFor="let photo of photos; let i = index" >
+                       <img  [src]="photo" width="100%" height="100%" alt="">
+                    </div>
+                </div>
+                <div  class="submit">
+                    <button  type="submit" class="mainBtn">Send</button>
+                </div>
+          </form>
+    </div>
+    <div class="lightyellow light"></div>
+    <div class="lightgreen light"></div>
+    <div  class="loading d-flex justify-content-center" *ngIf="this.loading === true">
+        <div class="spinner-border text-center" style="width: 400px; height: 400px; color: var(--mainColor);" role="status">        
+        </div>
+        <img class="spinner-logo" src="assets/Icon.png" alt="">
+    </div>
+</section>
+ 

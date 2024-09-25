@@ -28,8 +28,9 @@ export class HomeComponent implements OnInit , AfterViewInit{
   isSelected:boolean = false;
   Result:any|undefined;
   activeRelatedS:number = 0;
-  private selectedsympts:String[] = [];
+  selectedsympts:String[] = [];
   isModelNull:boolean = false;
+  isModelHasValue:boolean = false;
   scrolled:boolean = false;
   loading:boolean = false;
   selected:boolean = false;
@@ -50,15 +51,17 @@ export class HomeComponent implements OnInit , AfterViewInit{
    
   }
   ngAfterViewInit(): void {
+    // scrollY = 0;
     this.progression();
   }
   
   ngOnInit(): void {
+      window.scrollTo(0, 0);
     this.symptom.isClicked.subscribe((status)=>{
       this.Clicked = status;
     })
     this.symptom.selectedSymptoms.subscribe((symptom)=>{
-      this.selectedsympts = symptom
+      this.selectedsympts = symptom;
     })
   }
 
@@ -215,19 +218,28 @@ export class HomeComponent implements OnInit , AfterViewInit{
      }
 
      showResult(){
+      window.scroll(50 , 50)
       this.body.nativeElement.classList.add('blur-body');
        this.loading = true;
        setTimeout(()=>{
          this.loading = false;
         } , 2000)
-        this.http.post('http://palmclinic.runasp.net/api/Diseases/find-by-symptoms', this.selectedsympts).subscribe((response) => {this.Result = response;
-        console.log(this.Result);
-        if(this.Result.model == null){
-          this.isModelNull = true; 
-       }
+        this.symptom.getResults().subscribe((response)=>{
+          this.Result = response;
+          console.log(this.Result);
+          if(this.Result.model == null){
+            this.isModelNull = true; 
+         }
+         else{     
+          this.isModelHasValue = true;
+          console.log(this.Result.model.e_Name);
+         }
+        });
+      //   this.http.post('http://palmclinic.runasp.net/api/Diseases/find-by-symptoms', this.selectedsympts).subscribe((response) => {this.Result = response;
+      //   console.log(this.Result);
+        
 
-    })
-      console.log(this.Result.model);
+      // })
      }
 
      redefine(){

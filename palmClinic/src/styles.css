@@ -17,7 +17,7 @@ body {
   height: fit-content;;
   background-color:var(--backColor);
   position: relative;
-  z-index: 0;
+  z-index: -4;
   /* overflow: hidden; */
  }
 /* // <uniquifier>: Use a unique and descriptive class name
@@ -37,4 +37,14 @@ body {
   bottom: 100%;
   /* position: sticky; */
   transform: translate(-50% , -50%);
+}
+
+.mainBtn{
+    width: 370px;
+    height: 80px;
+    background-image: linear-gradient(to bottom , #AACC00 , #0FB127);
+    border-radius: 20px;
+    font-size: 40px;
+    font-weight: 800;
+    border: none;
 }

@@ -1,7 +1,7 @@
 
-        <section #body [class.blur-body]="isModelNull == true">
+        <section class="body mt-5" #body [class.blur-body]="isModelNull == true">
                 <section class="organs container">
-                        <div class="row container">
+                        <div class="row">
                             <div style="text-align: center;"   class="col-md-4 col-12 card organ-content" (click)="getOrgan(organ.id)" class="col" *ngFor="let organ of symptomsList; let i = index" (click)="setActive(i)"  style="width: 18rem; padding: 5px; text-align: center;">
                                     <img style="border-radius: 20px;" [class.disabled]="activeIndex !== -1 && activeIndex !== i" [class.active]="activeIndex === i" (click)="setActive(i)" [src]="organ?.imgUrl" class="card-img-top img" height="70%" alt="...">
                                     <div class="card-body cont">
@@ -65,7 +65,7 @@
                                 <span (click)="next(organ?.id)"><mat-icon style="width: 30px; font-size: 30px;">east</mat-icon></span>
                             </div>
                             <div [hidden]="activeIndex !== 4" class="col-xl-9 col-lg-9 col-md-9 col-sm-10 col-12">
-                                <button (click)="showResult()" type="submit" class="submitBtn btns">Show diagnosis</button>
+                                <button (click)="showResult()" type="submit" class="submitBtn">Show diagnosis</button>
                             </div>
                         </div>   
                     </div>     
@@ -73,7 +73,6 @@
                
         </section>
         <section *ngIf="isModelNull && this.loading === false" class="Results container" >
-            <div class="">
                 <div class="Result-content">
                         <p>{{this.Result?.e_Message | json}}</p>
                         <div class="results-btns row">
@@ -85,17 +84,40 @@
                             </button>
                         </div>
                 </div>
-            </div>
         </section>
         <button [hidden]="scrolled == false" (click)="goUpward()" #myButton class="up"><mat-icon style="width: 30px; font-size: 30px;">north</mat-icon>
         </button> 
 
         <div  class="loading d-flex justify-content-center" *ngIf="this.loading === true">
-             <div class="spinner-border text-center" style="width: 400px; height: 400px; color: var(--mainColor);" role="status">
-                
+             <div class="spinner-border text-center" style="width: 400px; height: 400px; color: var(--mainColor);" role="status">        
               </div>
               <img class="spinner-logo" src="assets/Icon.png" alt="">
         </div>
+        <section *ngIf="isModelHasValue && this.loading === false" class="results container">
+            <div class="results-contents">
+                <div class="title">
+                    <h2>Diagnosis Results </h2>
+                </div>
+                <div class="results-item">
+                    <h2>the infected parts: </h2>
+                    <span>sdnkafnan   </span>
+                    <span>sdnkafnan   </span>
+                    <span>sdnkafnan   </span>
+                </div>
+                <div class="results-item">
+                    <h2>symptoms:</h2>
+                    <div *ngFor="let sympt of selectedsympts " class="sympt"><h3>{{sympt}}</h3></div>
+                </div>
+                <div class="results-item">
+                    <h2>Disease:
+                        <span>{{this.Result?.model.e_Name}}</span>
+                    </h2>
+                </div>
+                <div class="results-item">
+                    <h2>Control:</h2>
+                </div>
+            </div>
+        </section>
         
           <!-- <mat-progress-spinner mode="indeterminate"></mat-progress-spinner> -->
 <!-- 
