@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { ConsultantComponent } from './components/consultant/consultant.component';
 
 const routes: Routes = [
-  {path:'' , component:HomeComponent},
+  {path:'' , component:HomePageComponent},
+  {path:'homePage' , component:HomePageComponent},
   {path:'diagnosis' , component:HomeComponent},
+  {path:'Consultation' , component:ConsultantComponent},
 ];
 
 @NgModule({

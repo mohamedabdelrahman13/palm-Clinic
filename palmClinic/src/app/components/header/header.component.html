@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid ">
-      <a class="navbar-brand" href="#"><img src="assets/Icon.png" style="width: 200px; height: 200px;" alt=""></a>
+    <div class="container-fluid">
+      <a class="navbar-brand"><img src="assets/Icon.png" alt="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,12 +10,18 @@
           <li class="nav-item">
             <h1 class="nav-link active" aria-current="page">PALM CLINIC</h1>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/Consultation']" routerLinkActive="router-link-active"  aria-current="page">Free Consultations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/homePage']" aria-current="page">Home</a>
+          </li>
         </ul>
-           <!-- <button class="btn "><mat-icon>brightness_2</mat-icon></button> -->
-         <div style="width: 220px;">
-          <button class="btn "><mat-icon>translate</mat-icon></button>
-         </div> 
-           <!-- <a class="nav-link active" aria-current="page">SIGN IN</a> --> 
+        <li class=" d-flex justify-content-between align-items-center " style="width: 220px;">
+           <div style="width: 100%; text-align: center;">
+             <button class="btn"><mat-icon>translate</mat-icon></button> 
+           </div>
+        </li > 
       </div>
     </div>
     <div class="lightyellow"></div>

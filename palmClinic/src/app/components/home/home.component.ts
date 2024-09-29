@@ -244,8 +244,16 @@ export class HomeComponent implements OnInit , AfterViewInit{
 
      redefine(){
        this.isModelNull=false;
-     }
-    
+       
+      }
+      return(){
+        this.body.nativeElement.classList.remove('blur-body');
+        this.isModelHasValue=false;
+        this.Result = undefined;
+      }
+      logR(){
+        console.log(this.Result);
+      }
   }
 
   // hideRelatedS(){

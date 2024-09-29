@@ -58,6 +58,10 @@ export class SymptomsService {
     this.selectedSympts.next(updatedSympts);
   }
 
+  clearSymptoms(){
+    this.symptoms = [];
+  }
+
   isInSelectedList(sympt:String){
    return this.symptoms.includes(sympt) ? true : false;
   }

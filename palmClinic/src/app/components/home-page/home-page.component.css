@@ -3,16 +3,33 @@ section{
     color: white;
     /* overflow: hidden; */
 }
-.home-content{
-    width: 100%;
-    height: 100vh;
-    background-image: url('/assets/home-bg.png');
-    background-size: cover;
-    margin-top: -150px;
-    z-index: -1;
-}
 
+.home-content{
+  width: 100%;
+  height: 100vh;
+  background-image: url('/assets/home-bg.png');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: -150px;
+  z-index: -1;
+}
+@media (max-width: 768px) {
+  .bg-image {
+    background-size: 150%; /* Adjust the position for tablet-sized screens */
+  }
+}
+@media (min-width:0px)and(max-width:576){
+  .home-content{
+    color: #30FF4F;
+    background-position:-1000px ;
+  }
+  
+}
 /* about section Styles */
+.home-items{
+  padding: 40px;
+}
 
 .home-items .about h2{
   text-align: center;

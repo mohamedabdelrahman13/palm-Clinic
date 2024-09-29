@@ -14,9 +14,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrl: './consultant.component.css'
 })
 export class ConsultantComponent implements OnInit{
-  loginForm!:FormGroup;
+  ConsultationForm!:FormGroup;
   photos:File[] = [];
   loading:boolean = false;
+  Result:any | undefined; 
+  successMessage:string = '';
   constructor(private fb:FormBuilder ,private http:HttpClient){
     
   }
@@ -26,7 +28,7 @@ export class ConsultantComponent implements OnInit{
       // })
     
       
-    this.loginForm = this.fb.group({
+    this.ConsultationForm = this.fb.group({
       Email:['' , Validators.required],
       Title:['' , Validators.required],
       Name:['' , Validators.required],
@@ -38,19 +40,19 @@ export class ConsultantComponent implements OnInit{
    }
  
   onSubmit(){
-    this.loading = true;
+      this.loading = true;
        setTimeout(()=>{
          this.loading = false;
         } , 5000)
-    if(this.loginForm.valid){
+    if(this.ConsultationForm.valid){
     const formData = new FormData();
-    formData.append('Name', this.loginForm.get('Name')?.value);
-    formData.append('Title', this.loginForm.get('Title')?.value);
-    formData.append('Phone', this.loginForm.get('Phone')?.value);
-    formData.append('Email', this.loginForm.get('Email')?.value);
-    formData.append('messsage', this.loginForm.get('messsage')?.value);
-    formData.append('Suggestions', this.loginForm.get('Suggestions')?.value);
-    formData.append('photos', this.loginForm.get('photos')?.value);
+    formData.append('Name', this.ConsultationForm.get('Name')?.value);
+    formData.append('Title', this.ConsultationForm.get('Title')?.value);
+    formData.append('Phone', this.ConsultationForm.get('Phone')?.value);
+    formData.append('Email', this.ConsultationForm.get('Email')?.value);
+    formData.append('messsage', this.ConsultationForm.get('messsage')?.value);
+    formData.append('Suggestions', this.ConsultationForm.get('Suggestions')?.value);
+    formData.append('photos', this.ConsultationForm.get('photos')?.value);
 
     // if (this.photos.length > 0) {
     //   this.photos.forEach((photo) => {
@@ -61,19 +63,24 @@ export class ConsultantComponent implements OnInit{
       console.log(key, value);
     });
     this.http.post("http://palmclinic.runasp.net/api/Diseases/Consultation" , formData).subscribe((response : any)=>{
+      this.Result = response;
       console.log(response);
       console.log(this.photos);
     })
-
- 
     console.log(formData)
     }
     else{
       console.log('error')
     }
+
+    this.ConsultationForm.reset()
   }
 
+  
 
+  redefine(){
+    this.Result = undefined;
+  }
   
   onSelectimg(e:Event | any){
     let reader = new FileReader();

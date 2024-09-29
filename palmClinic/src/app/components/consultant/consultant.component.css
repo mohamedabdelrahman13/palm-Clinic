@@ -255,3 +255,68 @@ div.phone-title.row{
     left: 50%;
     transform: translate(-50% , -50%);
 }
+/* successMessage */
+
+.Results{
+    width: 100%;
+    height: 70%;
+    margin-top: 50px;
+    background-image: url('/assets/bg2.png');
+    background-repeat: no-repeat;
+    background-size:60%;
+    background-position: center;
+   background-color:  #ffffff;
+   color: black;
+   font-size: 40px;
+   border: 2px solid white;
+   border-radius: 10px;
+   position: absolute;
+   z-index: 2;
+   top: 0;
+   left: 50%;
+   transform: translate(-50%);
+   font-weight: 700;
+   text-align: center;
+   position: fixed;
+}
+.Result-content{
+    padding-top: 30px;
+    width: 80%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    text-align: center;
+    
+}
+
+.results-btns{
+    width: 100%;
+    margin: 100px 0 0 0;
+    margin-left: 0;
+    margin-right: 0;
+    align-items: center;
+    font-weight: 700;
+    /* text-align: center; */
+}
+
+.results-btns .btn{
+    font-size: 35px;
+    font-weight: 500;
+}
+.results-btns .btn:first-child{
+   margin-right: 20px;
+}
+@media only screen and (min-width:768px) and (max-width:1200px) {
+    .results-btns{
+        margin-top: 50px;
+    }
+    .results-btns .btn{
+       margin: 0 0 20px 0 ;
+    }
+    .results-btns .btn:first-child{
+       margin-right: 0;
+    }
+
+}

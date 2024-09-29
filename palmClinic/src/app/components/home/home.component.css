@@ -295,11 +295,12 @@ h2:last-child span:hover{
    border-radius: 10px;
    position: absolute;
    z-index: 2;
-   top: 50%;
+   top: 0;
    left: 50%;
-   transform: translate(-50% , -50%);
+   transform: translate(-50%);
    font-weight: 700;
    text-align: center;
+   /* position: fixed; */
 }
 .Result-content{
     padding-top: 30px;
@@ -456,11 +457,15 @@ h2:last-child span:hover{
     width: 100%;
     border-radius: 10px;
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 50%;
-    transform: translate(-50% , -50%);
+    transform: translate(-50%);
     z-index: 4;
     /* position: fixed; */
+}
+
+.results .title{
+    text-align: center;
 }
 
 .results .results-item{
@@ -470,9 +475,8 @@ h2:last-child span:hover{
     margin: 10px 0 10px 0;
 
 }
-.results .results-item h2{
+.results h1 , .results .results-item h2 , .results .results-item h3{
     font-weight: 800;
-
 }
 .results .results-item span{
     font-size: 30px;
