@@ -6,7 +6,17 @@
     width: 100%;
     height: auto;
     background-color: rgba(255, 255, 255, 0.804);
-    padding: 30px 80px;
+    
+}
+@media(min-width:500px){
+  .form-content{
+    padding: 30px 50px;
+  }
+}
+@media(max-width:500px){
+  .form-content{
+    padding: 30px 10px;
+  }
 }
 .form-content legend{
     font-size: 50px;
@@ -149,95 +159,6 @@ div.phone-title.row{
   .title{
     padding: 0;
   }
-}
-
-/* animation */
-.light{
-    position: relative;
-}
-.lightyellow{
-    width:200px;
-    height:200px;
-    background-color: #BFD200;
-    border-radius:50%;
-    filter: blur(100px);
-    position: absolute;
-    left:500px;
-    top: 80%;
-    animation-name: firstLight;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    z-index: 1;
-}
-
-.lightgreen{
-    width:200px;
-    height:200px;
-    background-color:#007F5F;
-    border-radius:50%;
-    filter: blur(100px);
-    position: absolute;
-    top: 0px;
-    left: 0;
-    animation-name: secondLight;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    z-index: 1;
-    overflow: hidden;
-}
-
-
-@keyframes firstLight{
-    0%{
-        left: 800px;
-        top: 50%;
-    }
-
-    25%{
-        left:0;
-        top: 600px;
-    }
-
-    50%{
-        left:0px;
-        top: 600px;
-    }
-    75%{
-       left:300px;
-       top: 300px;
-    }
-    100%{
-        left:  800px;
-        top: 50%;
-    }
-
-    
-
-} 
-
-@keyframes secondLight{
-    0%{
-        left: 800px;
-        top: 600px;
-    }
-
-    25%{
-        left:0;
-        top: 600px;
-    }
-
-    50%{
-        left:0;
-        top: 600px;
-    }
-    75%{
-       left:0;
-       top: 300px;
-    }
-    100%{
-        left: 800px;
-        top: 600px;
-    }
 }
 
 /* spinner */

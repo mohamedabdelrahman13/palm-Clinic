@@ -1,5 +1,5 @@
 
-.par div{
+/* .par div{
     text-align: center;
     font-size: 30px;
     color: white;
@@ -13,102 +13,48 @@
 
 .par div:hover{
 
-}
-
+} */
+/* images styles */
 .active{
     border: 3px solid var(--mainColor);
     border-radius: 20px;
+}
+img.active {
+    filter: brightness(1.1);
+    border: 4px solid var(--mainColor);
+    transform: scale(1.05);
+    transition: all .3s;
+}
+
+img.active ~ div h4{
+    filter: brightness(1.1);
+    transform: scale(1.05);
+    transition: all .3s;
+}
+img.disabled ~ div h4{
+    filter: brightness(0.5);
+    transform: scale(1);
+    transition: all .3s;
+}
+
+img.disabled , img.disabled ~ h2{
+  opacity: .5;
+}
+
+span.disabled{
+    opacity: .3;
+    
+}
+h3.disabled .btns{
+    opacity: 1;
+
 }
 
 .bg{
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-.lightyellow{
-    width:200px;
-    height:200px;
-    background-color: #BFD200;
-    border-radius:50%;
-    filter: blur(100px);
-    position: absolute;
-    left:1000px;
-    top: 600px;
-    animation-name: firstLight;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    z-index: -1;
-}
-
-.lightgreen{
-    width:200px;
-    height:200px;
-    background-color:#007F5F;
-    border-radius:50%;
-    filter: blur(100px);
-    position: absolute;
-    top: 0px;
-    left: 0;
-    animation-name: secondLight;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    z-index: -1;
-}
-
-
-@keyframes firstLight{
-    0%{
-        left: 1000px;
-        top: 600px;
-    }
-
-    25%{
-        left:0;
-        top: 600px;
-    }
-
-    50%{
-        left:0;
-        top: 600px;
-    }
-    75%{
-       left:0;
-       top: 300px;
-    }
-    100%{
-        left: 1000px;
-        top: 600px;
-    }
-
-    
-
-} 
-
-@keyframes secondLight{
-    0%{
-        left: 300px;
-        top: 100px;
-    }
-
-    25%{
-        left:0;
-        top: 600px;
-    }
-
-    50%{
-        left:0;
-        top: 600px;
-    }
-    75%{
-       left:0;
-       top: 300px;
-    }
-    100%{
-        left: 1000px;
-        top: 600px;
-    }
-}
-
+/* scroll up btn */
 .up{
     width: 40px;
     height: 40px;
@@ -178,40 +124,7 @@ div.navigations span:hover{
    background-color: transparent;  
 } */
 
-img.active {
-    filter: brightness(1.1);
-    border: 4px solid var(--mainColor);
-    transform: scale(1.1);
-    transition: all .3s;
-}
 
-img.active ~ div h4{
-    filter: brightness(1.1);
-    transform: scale(1.1);
-    margin-top: 10px;
-    transition: all .3s;
-}
-img.disabled ~ div h4{
-    filter: brightness(0.5);
-    transform: scale(1);
-    transition: all .3s;
-}
-
-img.disabled , img.disabled ~ h2{
-  opacity: .5;
-}
-
-/* h4.disabled{
-    font-weight: lighter;
-} */
-span.disabled{
-    opacity: .3;
-    
-}
-h3.disabled .btns{
-    opacity: 1;
-
-}
 h2:last-child{
     width: 200px;
     text-align: center;
@@ -250,7 +163,7 @@ h2:last-child span:hover{
 .submitBtn{
    width: 100%;
    height: 80px;
-   font-size: 50px;
+   font-size: 40px;
    font-weight: 500;
    background-image: linear-gradient(to bottom , #AACC00 , #0FB127);
    border-radius: 20px;
@@ -340,10 +253,6 @@ h2:last-child span:hover{
     .results-btns .btn:first-child{
        margin-right: 0;
     }
-    /* .Results{
-       height: 90%;
-    }
-     */
 }
 @media(max-width:768px){
     .results-btns{

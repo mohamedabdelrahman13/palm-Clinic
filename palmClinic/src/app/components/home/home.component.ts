@@ -5,6 +5,7 @@ import { organs } from '../../models/organs.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -42,7 +43,8 @@ export class HomeComponent implements OnInit , AfterViewInit{
   constructor(private symptom:SymptomsService
      , private toastr:ToastrService
       ,private http : HttpClient
-      ,private detector:ChangeDetectorRef){   
+      ,private detector:ChangeDetectorRef
+      ,private Router:Router){   
     this.symptomsList = this.symptom.getOrganSymptoms();
     this.organ = this.symptom.getOrganSymptomsByID(1);
     this.sympts = this.organ?.sympts;
@@ -135,22 +137,26 @@ export class HomeComponent implements OnInit , AfterViewInit{
     }
   }
   showRelatedS(i:number){
-       let rsympArr = this.organ?.relatedSympts
-       for(let k = 0 ; k < 4 ; k++){
+       let rsympArr = this.organ?.relatedSympts;
+       if(rsympArr){
+       for(let k = 0 ; k < rsympArr.length ; k++){
          if(k == i){
            this.relatedSympt = k;
            this.activeRelatedS = k;
           }
        }
+      }
   }
 
   selectSympt(index:number){
       let clickedSympt:string ='';
-      for(let i = 0 ; i<4 ; i++){
-      if (i == index){
-        clickedSympt = this.sympts? this.sympts[i] : undefined;
+      if(this.sympts){
+        for(let i = 0 ; i< this.sympts.length ; i++){
+          if (i == index){
+            clickedSympt = this.sympts? this.sympts[i] : undefined;
+          }
+        }
       }
-    }
     this.symptom.addToSelectedSymptoms(clickedSympt);
     // this.toastr.success('symptom selected!' , '' ,{closeButton : true
     //   , timeOut:2000})
@@ -164,11 +170,13 @@ export class HomeComponent implements OnInit , AfterViewInit{
     }
   selectRsympt(index:number){
       let clickedRsympt:string ='';
-      for(let i = 0 ; i<4 ; i++){
-      if (i == index){
-        clickedRsympt = this.relatedSympts ? this.relatedSympts[i] : undefined;
+      if(this.relatedSympts){
+        for(let i = 0 ; i<this.relatedSympts.length ; i++){
+          if (i == index){
+            clickedRsympt = this.relatedSympts ? this.relatedSympts[i] : undefined;
+          }
+        }
       }
-    }
     this.symptom.addToSelectedSymptoms(clickedRsympt);
     this.selected = true;
     this.removed =false;
@@ -184,11 +192,13 @@ export class HomeComponent implements OnInit , AfterViewInit{
 
     removeSympt(index:number){
       let removedSympt:string ='';
-      for(let i = 0 ; i<4 ; i++){
-      if (i == index){
-        removedSympt = this.sympts? this.sympts[i] : undefined;
+      if(this.sympts){
+        for(let i = 0 ; i<this.sympts.length ; i++){
+          if (i == index){
+            removedSympt = this.sympts? this.sympts[i] : undefined;
+          }
+        }
       }
-    }
 
     this.symptom.removeSelectedSymptoms(removedSympt);
     this.removed=true;
@@ -200,11 +210,13 @@ export class HomeComponent implements OnInit , AfterViewInit{
     }
     removeRsympt(index:number){
       let removedRsympt:string ='';
-      for(let i = 0 ; i<4 ; i++){
-      if (i == index){
-        removedRsympt = this.relatedSympts? this.relatedSympts[i] : undefined;
+      if(this.relatedSympts){
+        for(let i = 0 ; i<this.relatedSympts.length ; i++){
+          if (i == index){
+            removedRsympt = this.relatedSympts? this.relatedSympts[i] : undefined;
+          }
+        }
       }
-    }
     this.symptom.removeSelectedSymptoms(removedRsympt);
     this.removed = true;
     setTimeout(()=>{
@@ -254,8 +266,12 @@ export class HomeComponent implements OnInit , AfterViewInit{
       logR(){
         console.log(this.Result);
       }
+      goToConsultation(){
+        this.Router.navigateByUrl('/Consultation')
+      }
   }
-
+  
+  
   // hideRelatedS(){
   //       const element = this.arrow.nativeElement as HTMLElement;
   //       element.classList.remove('rotate')

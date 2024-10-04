@@ -1,0 +1,430 @@
+
+.login-content{
+    width: 400px;
+    height: 300px;
+    color: white;
+    background-color: none;
+    border-radius: 20px;
+    border: 3px solid white;
+    margin-top: 125px;
+}
+.login-content legend{
+  text-align: center;
+}
+
+.login-content form{
+    padding: 20px;
+}
+.login-content form input{
+    width: 100%;
+    height: 40px;
+    background-color: rgba(96, 95, 95, 0.5);
+    border-radius: 10px;
+    color: white;
+}
+.login-content input:focus{
+    box-shadow: none;
+    border:3px solid white ;
+}
+.login-content input::-webkit-input-placeholder {
+    color: white;
+  }
+  .login-content input:-webkit-autofill {
+    background-color:rgba(96, 95, 95, 0.5) !important;
+    color: white !important; 
+}
+/* For Chrome, Safari, Edge */
+.login-content input:-webkit-autofill,
+.login-content input:-webkit-autofill:hover,
+.login-content input:-webkit-autofill:focus,
+.login-content input:-webkit-autofill:active {
+ /* background-color:rgba(96, 95, 95, 0.5);
+ -webkit-background-color:rgba(96, 95, 95, 0.5); */
+  -webkit-box-shadow: 0 0 0px 1000px rgba(96, 95, 95, 0.776) inset !important;  
+   box-shadow: 0 0 0px 1000px rgba(72, 72, 72, 0.5) inset !important;
+  color: white !important;
+}
+
+
+.login-content input:-moz-autofill {
+    background-color:rgba(96, 95, 95, 0.5) !important;
+    color: white !important;  
+  }
+div.submit{
+    text-align: center;
+}
+.mainBtn{
+    width: 50%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+
+}
+
+/* loading */
+.loading{
+    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    position: fixed;
+}
+.spinner-logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+}
+
+/* error message */
+
+.Results{
+    width: 100%;
+    height: 80%;
+    margin-top: 250px;
+    background-image: url('/assets/bg2.png');
+    background-repeat: no-repeat;
+    background-size:60%;
+    background-position: center;
+   background-color:  #ffffff;
+   color: black;
+   font-size: 40px;
+   border: 2px solid white;
+   border-radius: 10px;
+   position: absolute;
+   z-index: 2;
+   top: 0;
+   left: 50%;
+   transform: translate(-50%);
+   font-weight: 700;
+   text-align: center;
+   /* position: fixed; */
+}
+.Result-content{
+    width: 100%;
+    text-align: center;
+    padding-top: 30px;
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    
+}
+
+.results-btns{
+    margin-top: 150px;
+    text-align: center;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: 700;
+}
+.results-btns .btn{
+    font-size: 35px;
+    font-weight: 500;
+}
+.results-btns .btn:first-child{
+   margin-right: 20px;
+}
+@media only screen and (min-width:768px) and (max-width:1200px) {
+    .results-btns{
+        margin-top: 50px;
+    }
+    .results-btns .btn{
+       margin: 0 0 20px 0 ;
+    }
+    .results-btns .btn:first-child{
+       margin-right: 0;
+    }
+}
+@media(max-width:768px){
+    .results-btns{
+        margin-top: 50px;
+    }
+    .results-btns .btn{
+       margin: 0 0 20px 0 ;
+       width: 250px;
+    }
+    .results-btns .btn:first-child{
+       margin-right: 0;
+    }
+    .Result-content{
+        top: 0;
+        left: 0;
+        transform: translate(0 , 0);
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        height: 20%;
+    }
+    .Results{
+       height: 60%;
+    }   
+}
+
+.Result-content button{
+    width: 370px;
+    min-width: 340px;
+    height: 80px;
+    background-image: linear-gradient(to bottom , #AACC00 , #0FB127);
+    border-radius: 20px;
+    border: none;
+}
+
+/* animation styles */
+.light{
+    position: relative;
+  }
+  .lightyellow{
+    width:200px;
+    height:200px;
+    background-color: #BFD200;
+    border-radius:50%;
+    filter: blur(100px);
+    position: absolute;
+    left:500px;
+    top: 80%;
+    animation-name: YellowLight;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    z-index: 1;
+  }
+  
+  .lightgreen{
+    width:200px;
+    height:200px;
+    background-color:#007F5F;
+    border-radius:50%;
+    filter: blur(100px);
+    position: absolute;
+    top: 0px;
+    left: 0;
+    animation-name: GreenLight;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  
+  @media(min-width:992px){
+    @keyframes YellowLight{
+        0%{
+            left: 1100px;
+            top: 50%;
+        }
+    
+        25%{
+            left:0;
+            top: 400px;
+        }
+    
+        50%{
+            left:0px;
+            top: 400px;
+        }
+        75%{
+           left:300px;
+           top: 300px;
+        }
+        100%{
+            left:1100px;
+            top: 50%;
+        }
+    
+        
+    
+    } 
+    
+    @keyframes GreenLight{
+        0%{
+            left: 800px;
+            top: 400px;
+        }
+    
+        25%{
+            left:0;
+            top: 400px;
+        }
+    
+        50%{
+            left:0;
+            top: 400px;
+        }
+        75%{
+           left:0;
+           top: 300px;
+        }
+        100%{
+            left: 800px;
+            top: 400px;
+        }
+    }
+  }
+   
+  @media(min-width:768px) and (max-width:992px){
+    @keyframes YellowLight{
+        0%{
+            left: 500px;
+            top: 40%;
+        }
+    
+        25%{
+            left:0;
+            top: 600px;
+        }
+    
+        50%{
+            left:0px;
+            top: 600px;
+        }
+        75%{
+           left:300px;
+           top: 300px;
+        }
+        100%{
+            left:  500px;
+            top: 40%;
+        }
+    
+        
+    
+    } 
+    
+    @keyframes GreenLight{
+        0%{
+            left: 500px;
+            top: 400px;
+        }
+    
+        25%{
+            left:0;
+            top: 400px;
+        }
+    
+        50%{
+            left:0;
+            top: 400px;
+        }
+        75%{
+           left:0;
+           top: 300px;
+        }
+        100%{
+            left: 500px;
+            top: 400px;
+        }
+    }
+  }
+   
+  @media(min-width:510px) and (max-width:768px){
+    @keyframes YellowLight{
+        0%{
+            left: 300px;
+            top: 40%;
+        }
+    
+        25%{
+            left:0;
+            top: 600px;
+        }
+    
+        50%{
+            left:0px;
+            top: 600px;
+        }
+        75%{
+           left:300px;
+           top: 300px;
+        }
+        100%{
+            left:  300px;
+            top: 40%;
+        }
+    
+        
+    
+    } 
+    
+    @keyframes GreenLight{
+        0%{
+            left: 300px;
+            top: 400px;
+        }
+    
+        25%{
+            left:0;
+            top: 400px;
+        }
+    
+        50%{
+            left:0;
+            top: 400px;
+        }
+        75%{
+           left:0;
+           top: 300px;
+        }
+        100%{
+            left: 300px;
+            top: 400px;
+        }
+    }
+  }
+  @media(max-width:510px){
+    @keyframes YellowLight{
+        0%{
+            left: 150px;
+            top: 25%;
+        }
+    
+        25%{
+            left:0;
+            top: 400px;
+        }
+    
+        50%{
+            left:0px;
+            top: 200px;
+        }
+        75%{
+           left:150px;
+           top: 200px;
+        }
+        100%{
+            left:  150px;
+            top: 25%;
+        }
+    
+        
+    
+    } 
+    
+    @keyframes GreenLight{
+        0%{
+            left: 150px;
+            top: 400px;
+        }
+    
+        25%{
+            left:0;
+            top: 400px;
+        }
+    
+        50%{
+            left:0;
+            top: 400px;
+        }
+        75%{
+           left:0;
+           top: 300px;
+        }
+        100%{
+            left: 150px;
+            top: 400px;
+        }
+    }
+  }

@@ -28,14 +28,12 @@
                                     <div *ngIf="symptom"> 
                                         <h3 (click)="showRelatedS(i)"> 
                                             <span [class.disabled]="isSymptomSelected(symptom)"> {{symptom}}</span>
-                                            <button  [hidden]="isSymptomSelected(symptom)"  (click)="selectSympt(i)"  *ngIf="activeIndex !== 1 " class="btn btns" ><mat-icon style="font-weight: 600;">check</mat-icon></button>
+                                            <button  [hidden]="isSymptomSelected(symptom)"  (click)="selectSympt(i)"  *ngIf="activeIndex !== 1 " class="btn btns ms-4 ms-sm-4 ms-md-0" ><mat-icon style="font-weight: 600;">check</mat-icon></button>
                                             <button  [hidden]="!isSymptomSelected(symptom)" (click)="removeSympt(i)"  *ngIf="activeIndex !== 1 " class="btn btns" ><mat-icon style="font-weight: 600;">close</mat-icon></button>
-                                            <!-- <input [checked]="selectSympt(i)" [hidden]="activeIndex === 1" type="checkbox" > -->
                                             <span [class.rotate]="activeRelatedS === i" #arrow *ngIf="activeIndex === 1"><mat-icon style="font-weight: 900; font-size: 30px; width: 50px; text-align: center;" >east</mat-icon></span>
                                         </h3>
                                     </div>
                                 </div>
-                               
                                 <div class="lightyellow light"></div>
                                 <div class="lightgreen light"></div>
                         </div>
@@ -54,10 +52,10 @@
                                 <span (click)="next(organ?.id)"><mat-icon style="width: 30px; font-size: 30px;">east</mat-icon></span>
                             </div>
                             <div [hidden]="activeIndex !== 4" class="col-xl-9 col-lg-9 col-md-9 col-sm-10 col-12">
-                                <button (click)="showResult()" type="submit" class="submitBtn">Show diagnosis</button>
+                                <button (click)="showResult()" style="border: none;" type="submit" class="submitBtn">Show diagnosis</button>
                             </div>
                             <!-- to be removed -->
-                            <button (click)="logR()" type="submit" class="submitBtn">result</button>
+                            <!-- <button (click)="logR()" type="submit" class="submitBtn">result</button> -->
                         </div>   
                     </div>     
                 </div>    
@@ -69,7 +67,7 @@
                             <button (click)="redefine()" class="btn col">
                                 redefine
                             </button>
-                            <button class="btn col">
+                            <button (click)="goToConsultation()" class="btn col">
                                 consultant
                             </button>
                         </div>
@@ -125,7 +123,7 @@
                 </div>
                 <div class="text-center mb-2">
                     <button (click)="return()" class="mainBtn col">
-                        done
+                        Done
                     </button>
                 </div>
             </div>

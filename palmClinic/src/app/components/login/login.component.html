@@ -1,0 +1,35 @@
+<section class="container login-content" style="overflow: hidden;">
+    <div class="login-form">
+        <form class="container-fluid container-sm"  [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+            <legend class="mb-4">Login (Admin only)</legend>
+            <div class="mb-3">
+                 <input type="text" formControlName="userName" class="form-control input" id="exampleInputtext1" placeholder="userName" aria-describedby="textHelp">
+            </div>
+            <div class="mb-5">
+                 <input type="password" formControlName="password" class="form-control input" id="exampleInputPassword1" placeholder="Password" aria-describedby="passwordHelp">
+            </div>
+            <div  class="submit">
+             <button   type="submit" class="mainBtn">Login</button>
+             <!-- [disabled]="!this.LoginForm.valid" -->
+            </div>
+         </form>
+    </div>
+   
+</section>
+<section *ngIf="this.showException === true" class="Results container" >
+     <div class="Result-content">
+             <p>server error occurred , try again later</p>
+             <div class="results-btns">
+                 <button (click)="relogin()" class="btn">
+                     Done
+                 </button>
+             </div>
+     </div>
+</section>
+<div class="lightyellow light"></div>
+<div class="lightgreen light"></div>
+<div  class="loading d-flex justify-content-center" *ngIf="this.loading === true">
+     <div class="spinner-border text-center" style="width: 400px; height: 400px; color: var(--mainColor);" role="status">        
+      </div>
+      <img class="spinner-logo" src="assets/Icon.png" alt="">
+</div>

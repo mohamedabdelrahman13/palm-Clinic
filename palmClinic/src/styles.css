@@ -43,8 +43,264 @@ body {
     width: 370px;
     height: 80px;
     background-image: linear-gradient(to bottom , #AACC00 , #0FB127);
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 40px;
     font-weight: 800;
     border: none;
 }
+
+/* common style for animations */
+.light{
+  position: relative;
+}
+.lightyellow{
+  width:200px;
+  height:200px;
+  background-color: #BFD200;
+  border-radius:50%;
+  filter: blur(100px);
+  position: absolute;
+  left:500px;
+  top: 80%;
+  animation-name: YellowLight;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  z-index: 1;
+}
+
+.lightgreen{
+  width:200px;
+  height:200px;
+  background-color:#007F5F;
+  border-radius:50%;
+  filter: blur(100px);
+  position: absolute;
+  top: 0px;
+  left: 0;
+  animation-name: GreenLight;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  z-index: 1;
+  overflow: hidden;
+}
+
+
+@media(min-width:992px){
+  @keyframes YellowLight{
+      0%{
+          left: 800px;
+          top: 75%;
+      }
+  
+      25%{
+          left:0;
+          top: 600px;
+      }
+  
+      50%{
+          left:0px;
+          top: 600px;
+      }
+      75%{
+         left:300px;
+         top: 300px;
+      }
+      100%{
+          left:800px;
+          top: 75%;
+      }
+  
+      
+  
+  } 
+  
+  @keyframes GreenLight{
+      0%{
+          left: 800px;
+          top: 600px;
+      }
+  
+      25%{
+          left:0;
+          top: 600px;
+      }
+  
+      50%{
+          left:0;
+          top: 600px;
+      }
+      75%{
+         left:0;
+         top: 300px;
+      }
+      100%{
+          left: 800px;
+          top: 600px;
+      }
+  }
+}
+ 
+@media(min-width:768px) and (max-width:992px){
+  @keyframes YellowLight{
+      0%{
+          left: 500px;
+          top: 80%;
+      }
+  
+      25%{
+          left:0;
+          top: 600px;
+      }
+  
+      50%{
+          left:0px;
+          top: 600px;
+      }
+      75%{
+         left:300px;
+         top: 300px;
+      }
+      100%{
+          left:  500px;
+          top: 80%;
+      }
+  
+      
+  
+  } 
+  
+  @keyframes GreenLight{
+      0%{
+          left: 500px;
+          top: 600px;
+      }
+  
+      25%{
+          left:0;
+          top: 600px;
+      }
+  
+      50%{
+          left:0;
+          top: 600px;
+      }
+      75%{
+         left:0;
+         top: 300px;
+      }
+      100%{
+          left: 500px;
+          top: 600px;
+      }
+  }
+}
+ 
+@media(min-width:510px) and (max-width:768px){
+  @keyframes YellowLight{
+      0%{
+          left: 300px;
+          top: 80%;
+      }
+  
+      25%{
+          left:0;
+          top: 600px;
+      }
+  
+      50%{
+          left:0px;
+          top: 600px;
+      }
+      75%{
+         left:300px;
+         top: 300px;
+      }
+      100%{
+          left:  300px;
+          top: 80%;
+      }
+  
+      
+  
+  } 
+  
+  @keyframes GreenLight{
+      0%{
+          left: 300px;
+          top: 600px;
+      }
+  
+      25%{
+          left:0;
+          top: 600px;
+      }
+  
+      50%{
+          left:0;
+          top: 600px;
+      }
+      75%{
+         left:0;
+         top: 300px;
+      }
+      100%{
+          left: 300px;
+          top: 600px;
+      }
+  }
+}
+@media(max-width:510px){
+  @keyframes YellowLight{
+      0%{
+          left: 150px;
+          top: 80%;
+      }
+  
+      25%{
+          left:0;
+          top: 600px;
+      }
+  
+      50%{
+          left:0px;
+          top: 600px;
+      }
+      75%{
+         left:150px;
+         top: 300px;
+      }
+      100%{
+          left:  150px;
+          top: 80%;
+      }
+  
+      
+  
+  } 
+  
+  @keyframes GreenLight{
+      0%{
+          left: 150px;
+          top: 600px;
+      }
+  
+      25%{
+          left:0;
+          top: 600px;
+      }
+  
+      50%{
+          left:0;
+          top: 600px;
+      }
+      75%{
+         left:0;
+         top: 300px;
+      }
+      100%{
+          left: 150px;
+          top: 600px;
+      }
+  }
+}
+ 

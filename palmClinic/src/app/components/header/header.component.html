@@ -2,29 +2,47 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand"><img src="assets/Icon.png" alt="logo"></a>
+      <div class="title" style="text-align: center; ">
+        <h1 class="text-center" aria-current="page">PALM CLINIC</h1>
+      </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-auto">
-          <li class="nav-item">
-            <h1 class="nav-link active" aria-current="page">PALM CLINIC</h1>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['/Consultation']" routerLinkActive="router-link-active"  aria-current="page">Free Consultations</a>
+          <li class="d-none d-md-none">
+            <h1 class=" active" aria-current="page">PALM CLINIC</h1>
           </li>
           <li class="nav-item">
             <a class="nav-link active" [routerLink]="['/homePage']" aria-current="page">Home</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/diagnosis']" aria-current="page">Diagnosis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/Consultation']" routerLinkActive="router-link-active"  aria-current="page">Free Consultations</a>
+          </li>
+          <li class="nav-item" *ngIf="!this.isLoggedIn">
+            <a class="nav-link active" [routerLink]="['/login']" routerLinkActive="router-link-active"  aria-current="page">login <mat-icon style="font-size: 20px; width: 20px; height: 20px; vertical-align: middle;">login</mat-icon></a>
+          </li>
+          <li class="nav-item" *ngIf="this.isLoggedIn"  (click)="logout()">
+            <a class="nav-link active"   aria-current="page">logout <mat-icon style="font-size: 20px; width: 20px; height: 20px; vertical-align: middle;">logout</mat-icon></a>
+          </li>
         </ul>
-        <li class=" d-flex justify-content-between align-items-center " style="width: 220px;">
-           <div style="width: 100%; text-align: center;">
-             <button class="btn"><mat-icon>translate</mat-icon></button> 
+        <li class="loginBtn d-flex justify-content-between align-items-center " style="width: 220px;">
+           <div class="d-flex justify-content-between align-items-center" style="width: 100%; text-align: center;">
+            <li class="nav-item"  *ngIf="!this.isLoggedIn">
+             <a  style="font-size: 25px; margin-bottom: 30px; color: white;" class="nav-link active" [routerLink]="['/login']" routerLinkActive="router-link-active"  aria-current="page">login <mat-icon style="font-size: 20px; width: 20px; height: 20px; vertical-align: middle;">login</mat-icon></a>
+            </li> 
+            <li class="nav-item " (click)="logout()" *ngIf="this.isLoggedIn">
+             <a style="font-size: 20px; margin-bottom: 30px; color: white;" class="nav-link active"  aria-current="page"> logout<mat-icon style=" vertical-align: middle;">logout</mat-icon></a>
+            </li> 
+             <button class="btn"><mat-icon>translate</mat-icon></button>
            </div>
         </li > 
       </div>
     </div>
-    <div class="lightyellow"></div>
-    <div class="lightgreen"></div>
+    <div class="lightyellowH"></div>
+    <div class="lightgreenH"></div>
 </nav>
 
