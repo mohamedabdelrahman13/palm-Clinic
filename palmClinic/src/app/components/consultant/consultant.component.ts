@@ -35,7 +35,7 @@ export class ConsultantComponent implements OnInit{
       Phone:['' , Validators.required],
       messsage:['' , Validators.required],
       Suggestions:[''],
-      // photos:[''],
+      photos:[''],
     }) 
    }
  
@@ -53,15 +53,14 @@ export class ConsultantComponent implements OnInit{
     formData.append('messsage', this.ConsultationForm.get('messsage')?.value);
     formData.append('Suggestions', this.ConsultationForm.get('Suggestions')?.value);
     formData.append('photos', this.ConsultationForm.get('photos')?.value);
-
     // if (this.photos.length > 0) {
     //   this.photos.forEach((photo) => {
     //     formData.append('photos[]', photo);
     //   });
     // }
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    });
+    // formData.forEach((value, key) => {
+    //   console.log(key, value);
+    // });
     this.http.post("http://palmclinic.runasp.net/api/Diseases/Consultation" , formData).subscribe((response : any)=>{
       this.Result = response;
       console.log(response);

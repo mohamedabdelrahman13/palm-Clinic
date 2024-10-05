@@ -3,13 +3,15 @@
         <form class="container-fluid container-sm"  [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
             <legend class="mb-4">Login (Admin only)</legend>
             <div class="mb-3">
-                 <input type="text" formControlName="userName" class="form-control input" id="exampleInputtext1" placeholder="userName" aria-describedby="textHelp">
+                 <input type="text" formControlName="userName" class="form-control input" id="exampleInputtext1" placeholder="Username" aria-describedby="textHelp">
+                 <mat-icon [hidden]="!LoginForm.get('userName')?.errors?.['required']" class="icon">person</mat-icon>
             </div>
             <div class="mb-5">
                  <input type="password" formControlName="password" class="form-control input" id="exampleInputPassword1" placeholder="Password" aria-describedby="passwordHelp">
+                 <mat-icon [hidden]="!LoginForm.get('password')?.errors?.['required']" class="icon">lock</mat-icon>
             </div>
             <div  class="submit">
-             <button   type="submit" class="mainBtn">Login</button>
+             <button  type="submit" class="mainBtn">Login</button>
              <!-- [disabled]="!this.LoginForm.valid" -->
             </div>
          </form>

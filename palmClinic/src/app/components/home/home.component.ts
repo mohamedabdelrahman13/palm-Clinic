@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit , AfterViewInit{
      , private toastr:ToastrService
       ,private http : HttpClient
       ,private detector:ChangeDetectorRef
-      ,private Router:Router){   
+      ,private router:Router){   
     this.symptomsList = this.symptom.getOrganSymptoms();
     this.organ = this.symptom.getOrganSymptomsByID(1);
     this.sympts = this.organ?.sympts;
@@ -256,18 +256,22 @@ export class HomeComponent implements OnInit , AfterViewInit{
 
      redefine(){
        this.isModelNull=false;
+       this.symptom.clearSymptoms();
+
        
       }
       return(){
         this.body.nativeElement.classList.remove('blur-body');
+        this.symptom.clearSymptoms();
+        console.log(this.selectedsympts)
         this.isModelHasValue=false;
-        this.Result = undefined;
-      }
+        this.Result = undefined; 
+  }
       logR(){
         console.log(this.Result);
       }
       goToConsultation(){
-        this.Router.navigateByUrl('/Consultation')
+        this.router.navigateByUrl('/Consultation')
       }
   }
   

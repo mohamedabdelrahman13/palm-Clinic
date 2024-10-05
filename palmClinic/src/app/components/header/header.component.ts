@@ -20,7 +20,6 @@ export class HeaderComponent {
   }
   logout(){
     this.login.localstor()
-    console.log(this.localStHasValue)
     this.login.logout();
     this.router.navigate(['/login'] , {replaceUrl : true})
     console.log(this.isLoggedIn)

@@ -166,10 +166,16 @@ h2:last-child span:hover{
    font-size: 40px;
    font-weight: 500;
    background-image: linear-gradient(to bottom , #AACC00 , #0FB127);
-   border-radius: 20px;
+   border-radius: 10px;
    border: 2px solid white;
    transition: all .3s;
 }
+/* .submitBtn:hover{
+    background-image: linear-gradient(to bottom , #eff0ea , #5df474);
+    transform: scale(1.01);
+   transition: all .3s;
+   font-weight: 800 ;
+} */
 
 @media(max-width:768px){
     .submitBtn{
@@ -394,3 +400,4 @@ h2:last-child span:hover{
 .results .results-item .sympt h3{
     margin-bottom: 20px;
 }
+

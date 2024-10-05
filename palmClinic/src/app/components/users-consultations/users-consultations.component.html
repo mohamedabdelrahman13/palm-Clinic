@@ -1,8 +1,12 @@
+<div class="btn">
+    <button (click)="showConsult()" class="mainBtn">showConsultations</button>
+</div>
 <section class="container-fluid">
   <div class="data">
       <table class="table table-striped">
         <thead>
             <tr>
+                <th>datetime</th>
                 <th>Name</th>
                 <th>Title</th>
                 <th>Phone</th>
@@ -13,16 +17,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>mohamed</td>
-                <td>researcher</td>
-                <td>01030663203</td>
-                <td>mohamedgmail.com</td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi aperiam, maxime ipsam repellendus quidem consectetur neque odit, animi, sed aliquam laudantium asperiores temporibus molestias explicabo similique quas eum quod minus?</td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ipsa, non quidem a accusantium temporibus nihil rem, reiciendis voluptatibus sint at laborum alias vitae commodi eum modi vel! Ad, vitae!</td>
-                <td>message</td>
+            <tr *ngFor="let item of userConsultations ; let i = index">
+                <td>{{item.datetime}}</td>
+                 <td>{{item.name}}</td>
+                 <td>{{item.title}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.messsage}}</td>
+                <td>{{item.suggestions}}</td>
+                <td style="display: flex; justify-content: center;">
+                    <img *ngFor="let photo of item.photoURL" [src]="photo" alt="" width="100px" height="100px">
+                </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td>message</td>
                 <td>message</td>
                 <td>message</td>
@@ -69,7 +76,7 @@
                     <img src="assets/buds.jpg" alt="" width="100px" height="100px">
                     <img src="assets/buds.jpg" alt="" width="100px" height="100px">
                 </td>
-            </tr>
+            </tr> -->
         </tbody>
       </table>
   </div>
