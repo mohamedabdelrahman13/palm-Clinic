@@ -4,32 +4,29 @@
     <div class="home-items container">
         <div class="about">
             <h2 class="title">Palm clinic</h2>
+            
             <p class="about-p" #aboutP>
-                Identify palm diseases in moments, and save your money. 
-                The Palm Clinic application is your comprehensive resource for palm tree management, 
-                combining scholarly research with practical expertise. Our platform provides evidence-based treatment methods and protective strategies,
-                 all backed by scientific principles and illustrated with authentic images of prevalent diseases in your region. 
-                 Guided by the motto "When the palm thrives, 
-                 humanity flourishes," this essential palm tree cultivation and conservation tool recognizes the vital connection between palm health and human welfare.
-                  Take action with our user-friendly, 
-                  professional-grade tool and start your now to experience smart, 
-                  easy palm care that works.
+                {{'HOME.DESCRIPTION'| translate}}
             </p>
         </div>
+
+        <!-- services section starts  -->
         <div class="services mt-5">
-            <h2 class="title">Our services</h2>
+            <h2 class="title">{{'HOME.SERVICES' | translate}}</h2>
             <div class="row">
                 <div class="services-item item1 me-md-5 mb-5 mb-sm-5 mb-md-0  col" #item1>
                     <div class="mt-5" style="text-align: center; "> <mat-icon  style=" width: 60px; height: 60px; font-size: 60px; color: #80B918;">account_circle</mat-icon></div>
-                    <h3>Free consultations</h3>
-                    <p>The “Palm Clinic” app offers comprehensive consultations for palm tree management based on scientific research and practical expertise.   <a routerLink="/Consultation" routerLinkActive="router-link-active" >  try now</a></p>
+                    <h3>{{'HOME.Consultations' | translate}}</h3>
+                    <p>{{'HOME.ConsultationsDESC' | translate}}<a routerLink="/Consultation" routerLinkActive="router-link-active" >  try now</a></p>
                 </div>
                 <div class="services-item item2 col" #item2>
                    <div class="mt-5" style="text-align: center; "> <mat-icon  style=" width: 60px; height: 60px; font-size: 60px; color: #80B918;">check_circle</mat-icon></div>
-                    <h3>Diagnosis diseases</h3>
-                    <p>The app provides evidence-based methods for diagnosing and treating common palm tree diseases.<a routerLink="/diagnosis" routerLinkActive="router-link-active" >try now</a></p>
+                    <h3>{{'HOME.DIAGNOSIS' | translate}}</h3>
+                    <p>{{'HOME.DIAGNOSISDESC' | translate}}<a routerLink="/diagnosis" routerLinkActive="router-link-active" >try now</a></p>
                 </div>
             </div>
         </div>
+        <!-- services section ends  -->
     </div>
+    
 </section>

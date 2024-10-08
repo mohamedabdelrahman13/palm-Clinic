@@ -1,3 +1,4 @@
+<!-- login form starts -->
 <section class="container login-content" style="overflow: hidden;">
     <div class="login-form">
         <form class="container-fluid container-sm"  [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
@@ -18,6 +19,9 @@
     </div>
    
 </section>
+<!-- login-form ends  -->
+
+<!-- error when server is not available starts-->
 <section *ngIf="this.showException === true" class="Results container" >
      <div class="Result-content">
              <p>server error occurred , try again later</p>
@@ -28,6 +32,8 @@
              </div>
      </div>
 </section>
+<!-- error when server is not available ends-->
+
 <div class="lightyellow light"></div>
 <div class="lightgreen light"></div>
 <div  class="loading d-flex justify-content-center" *ngIf="this.loading === true">

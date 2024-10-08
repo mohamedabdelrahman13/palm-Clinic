@@ -48,10 +48,12 @@ section{
 
 /* Services section styles */
 .services{
+  /* background-color: #30FF4F; */
     margin-bottom: 50px;
 }
 .services-item{
    transition: all 1s;
+   min-width: 200px;
   }
 .home-items .services h2{
     text-align: center;
@@ -95,4 +97,11 @@ section{
 .services .item2{
     transform: translateX(-1000px);
     opacity: 0;
+}
+.translateBtns{
+  margin-left: 86%;
+}
+.mainBtn{
+  width: 100px;
+  height: 60px;
 }

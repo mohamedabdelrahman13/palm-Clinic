@@ -16,6 +16,18 @@ img{
         height: 110px;
     }
 }
+@media(max-width:420px){
+    img{
+        width: 100px;
+        height: 110px;
+    }
+}
+@media (min-width:0px) and (max-width:420px){
+    img{
+        width: 60px;
+        height: 70px;
+    }
+}
 
 h1{
     color: white;
@@ -24,10 +36,11 @@ h1{
     font-size: 45px;
     z-index: 0;
     cursor: pointer;
+    margin-right: 20px;
 }
 @media(max-width:540px){
     div.title{
-        width: 38%;
+        width: 32%;
         margin-right: 60px;
         /* background-color: red; */
     }
@@ -35,18 +48,20 @@ h1{
         text-align: left;
         font-size: 30px;
     }
+    
 }
-@media(max-width:419px){
+@media(max-width:420px){
     div.title{
-        width: 38%;
+        width: 22%;
         margin-right: 60px;
-        /* background-color: red; */
     }
     div.title h1{
         text-align: left;
-        font-size: 30px;
+        font-size: 25px;
     }
 }
+
+
 @media(min-width:1000px){
     div.title{
         width: 100%;
@@ -138,7 +153,7 @@ nav a{
 @media(min-width:1264px){
     @keyframes firstLight{
         0%{
-           left: 1100px;
+           left: 1300px;
            background-color: #BFD200;
         }
         50%{
@@ -146,7 +161,7 @@ nav a{
             background-color: #007F5F;
         }
         100%{
-           left: 1100px;
+           left: 1300px;
            background-color: #BFD200;
         }
     
@@ -159,7 +174,7 @@ nav a{
     
         }
         50%{
-            left: 1100px;
+            left: 1300px;
             background-color: #BFD200;
     
         }

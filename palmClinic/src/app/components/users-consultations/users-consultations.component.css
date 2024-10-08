@@ -6,6 +6,15 @@
     border: 3px solid var(--mainColor);
     
 }
+.scroll-section {
+    position: fixed; /* Keeps the section fixed on the screen */
+    top: 0;          /* Adjust this value based on where you want it to be */
+    right: 0;        /* You can adjust this for positioning */
+    width: 300px;    /* Set a fixed width */
+    height: 100vh;   /* Full viewport height to keep it fixed */
+    overflow-y: hidden; /* Scroll only vertically */
+    overflow-x: scroll; /* Hide horizontal scrollbar if not needed */
+  }
 .data thead{
     border-bottom: 2px solid var(--mainColor);
 }
@@ -15,6 +24,7 @@ table tbody tr{
 }
 .data table th , table tbody tr td{
     padding: 15px;
+    border-right: 1px solid var(--mainColor);
 }
 
 .message{
@@ -25,4 +35,10 @@ table tbody tr{
 .btn{
     width: 100%;
     margin: 0px auto;
+}
+
+.mainBtn{
+    height: 70px;
+    width: 200px;
+    font-size: 20px;
 }

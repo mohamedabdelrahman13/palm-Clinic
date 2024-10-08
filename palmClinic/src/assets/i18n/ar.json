@@ -1,0 +1,41 @@
+{
+    "HOME": {
+        "DESCRIPTION": "تحديد أمراض النخيل في لحظات، وتوفير أموالك. تطبيق “عيادة النخيل” هو مصدرك الشامل لإدارة أشجار النخيل، حيث يجمع بين البحث العلمي والخبرة العملية. يوفر منصتنا طرق علاجية مبنية على الأدلة واستراتيجيات وقائية، مدعومة بالمبادئ العلمية ومصورة بصور حقيقية للأمراض الشائعة في منطقتك. مسترشدين بشعار “عندما تزدهر النخيل، تزدهر الإنسانية”، هذا الأداة الأساسية لزراعة وحفظ أشجار النخيل تعترف بالصلة الحيوية بين صحة النخيل ورفاهية الإنسان. اتخذ الإجراءات باستخدام أداتنا الاحترافية سهلة الاستخدام وابدأ الآن لتجربة رعاية النخيل الذكية والسهلة التي تعمل.",
+        "SERVICES": "خدماتنا",
+        "DIAGNOSIS": "تشخيص الأمراض",
+        "DIAGNOSISDESC": " يوفر التطبيق طرقًا مبنية على الأدلة لتشخيص وعلاج الأمراض الشائعة في أشجار النخيل",
+        "Consultations": "استشارة مجانية",
+        "ConsultationsDESC": "تطبيق “عيادة النخيل” يقدم استشارات شاملة لإدارة أشجار النخيل بناءً على البحث العلمي والخبرة العملية"
+      },
+
+      "SYMPTOMS": {
+        "ROOT_1": "ظهور الجذور باللون الأسود أو البني أو أن تكون طرية بدلًا من أن تكون صلبة ",
+        "ROOT_2": "تقرحات داكنة على الجذور",
+        "ROOT_3": "انبعاث رائحة كريهة من منطقة الجذور",
+        "ROOT_4": "تلون الأوعية الداخلية بلون بنى محمر أو وردى للأنسجة الداخلية للجذور وقاعدة الجذع",
+        
+        "LEAVES_1": "Fresh Leaves",
+        "LEAVES_2": "Old Leaves",
+        "LEAVES_3": "Fresh and old Leaves",
+        "LEAVES_4": "Leaves bases",
+        
+        "FLORAL_1": "Black discoloration",
+        "FLORAL_2": "Pink discoloration",
+        "FLORAL_3": "Infected inflorescences are soft and water-soaked, and a foul smell may emanate",
+        
+        "BUDS_1": "Death of the terminal bud, or bending head of the palm and wilt",
+        "BUDS_2": "Heart or Trunk Rot",
+        
+        "FRUITS_1": "Brown or black spots on the fruits",
+        "FRUITS_2": "Soft, water-soaked spots on the fruits",
+        "FRUITS_3": "Wilting and dropping fruits prematurely",
+        "FRUITS_4": "Visible fungal growth on the fruit",
+        "FRUITS_5": "Emanating a foul smell from the rotting fruits"
+      },
+      "RELATEDSYMPTOMS": {
+        "LEAVES_1": "Yellowing and wilting",
+        "LEAVES_2": "A reddish brown or dark-brown stripe along the midrib of the leaves",
+        "LEAVES_3": "Very small black fungal bodies appear on the leaf blades, especially on the oldest leaves",
+        "LEAVES_4": "Related brownish discoloration and rot"
+      }
+}

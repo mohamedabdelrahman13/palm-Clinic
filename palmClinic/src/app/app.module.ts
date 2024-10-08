@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersConsultationsComponent } from './components/users-consultations/users-consultations.component';
@@ -9,7 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ConsultantComponent } from './components/consultant/consultant.component';
@@ -23,7 +24,9 @@ import { LoginComponent } from './components/login/login.component';
 // import {MatInputModule} from '@angular/material/input';
 // import {MatFormFieldModule} from '@angular/material/form-field';
 
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +38,14 @@ import { LoginComponent } from './components/login/login.component';
     UsersConsultationsComponent
   ],
   imports: [
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader:{
+        provide:TranslateLoader , 
+        useFactory:HttpLoaderFactory,
+        deps:[HttpClient]
+      }
+    }),
     BrowserModule,
     AppRoutingModule,
     ToastrModule.forRoot({

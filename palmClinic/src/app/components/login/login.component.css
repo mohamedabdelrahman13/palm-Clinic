@@ -8,6 +8,25 @@
     border: 3px solid white;
     margin-top: 125px;
 }
+
+@media(max-width:400px){
+    .login-content{
+        width: 250px;
+        height: 350px;
+    }
+    .icon{
+        position: absolute;
+        top:20%;
+        left:85%;
+      }
+}
+@media(min-width:400px){
+    .icon{
+        position: absolute;
+        top:20%;
+        left:90%;
+      }
+}
 .login-content legend{
   text-align: center;
 }
@@ -177,11 +196,8 @@ div.submit{
 .login-form div{
   position: relative;
 }
-.icon{
-  position: absolute;
-  top:20%;
-  left:90%;
-}
+
+
 
 /* animation styles */
 .light{

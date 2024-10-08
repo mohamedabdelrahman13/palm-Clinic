@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-page',
@@ -9,7 +10,12 @@ export class HomePageComponent {
   @ViewChild('aboutP') aboutP!:ElementRef<HTMLElement>
   @ViewChild('item1') item1!:ElementRef<HTMLElement>
   @ViewChild('item2') item2!:ElementRef<HTMLElement>
-  constructor(){}
+  constructor(private translate:TranslateService){
+    translate.setDefaultLang('en');
+  }
+  translateLang(lang:string){
+    this.translate.use(lang)
+  }
   @HostListener('window:scroll', ['$event'])
   onScroll(event: Event) {
     if(scrollY >= 200)
@@ -26,4 +32,6 @@ export class HomePageComponent {
     }
 
   }
+
+  
 }

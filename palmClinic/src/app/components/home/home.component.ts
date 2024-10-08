@@ -6,6 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { Route, Router } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { LanguagesService } from '../../services/languages.service';
 
 @Component({
   selector: 'app-home',
@@ -22,9 +24,12 @@ export class HomeComponent implements OnInit , AfterViewInit{
   symptomClicked:boolean = false;
   isAtLeaves:boolean = false;
   symptomsList:organs[] = [];
-  sympts:any[] | undefined = []
+  resResp:any|undefined;
+  sympts:any[] | undefined = [];
+  arSympts:any[] | undefined = [];
   relatedSympts:any[] | undefined = [];
-  relatedSympt:number = 0
+  arRelatedSympts:any[] | undefined = [];
+  relatedSympt:number = 0;
   organ:organs | undefined;
   isSelected:boolean = false;
   Result:any|undefined;
@@ -36,6 +41,9 @@ export class HomeComponent implements OnInit , AfterViewInit{
   loading:boolean = false;
   selected:boolean = false;
   removed:boolean = false;
+  english:boolean = true;
+  arabic:boolean = false;
+  currentLanguage:boolean = false;
 
   @ViewChild('arrow') arrow!:ElementRef<HTMLElement>
   @ViewChild('progressLine') progressLine!:ElementRef<HTMLElement>
@@ -44,13 +52,28 @@ export class HomeComponent implements OnInit , AfterViewInit{
      , private toastr:ToastrService
       ,private http : HttpClient
       ,private detector:ChangeDetectorRef
-      ,private router:Router){   
-    this.symptomsList = this.symptom.getOrganSymptoms();
-    this.organ = this.symptom.getOrganSymptomsByID(1);
-    this.sympts = this.organ?.sympts;
-    // this.activeIndex = 0;
+      ,private router:Router
+      ,private translate:TranslateService
+      ,private lang:LanguagesService){    
+        this.symptom.getAllSymptoms().subscribe((response)=>{
+          this.resResp = response;
+          this.symptomsList = this.resResp.model;
+          this.organ = this.symptom.getOrganSymptomsByID(1);
+          this.sympts = this.organ?.sympts;
+          this.arSympts = this.organ?.ar_sympts;
+          this.activeIndex = 0;
+       });  
+    console.log(this.organ)
+    translate.setDefaultLang('en');
+    console.log(this.symptomsList)
     console.log(this.activeIndex);
+    this.lang.getCurrentLang.subscribe((status)=>{
+      this.currentLanguage = status;
+    })
    
+  }
+  translateLang(lang:string){
+    this.translate.use(lang)
   }
   ngAfterViewInit(): void {
     // scrollY = 0;
@@ -101,41 +124,49 @@ export class HomeComponent implements OnInit , AfterViewInit{
       break;
     }
    }
+
+   //get the organ clicked
   getOrgan(id:number | undefined){
    this.organ = this.symptom.getOrganSymptomsByID(id);
    this.sympts = this.organ?.sympts;
+   this.arSympts = this.organ?.ar_sympts;
    this.relatedSympts = this.organ?.relatedSympts;
+   this.arRelatedSympts = this.organ?.ar_relatedSympts;
+   console.log(this.symptomsList)
   //  console.log(this.sympts);
-  }
-  
-  previous(id:number | undefined){
-    if(id?id > 1:undefined){
-      this.getOrgan(id?id-1:undefined)
-      console.log(this.organ?.id);
-      this.activeIndex = this.organ?.id ? this.organ.id-1 : undefined;
-      this.progression();
-      // this.organ = this.symptom.getOrganSymptomsByID(id?id-1:undefined);
-      // this.sympts = this.organ?.sympts;
-      // this.relatedSympts = this.organ?.relatedSympts;
-   }
-   else if(id?id === 2:undefined || this.activeIndex === 1){
-     this.isAtLeaves = true;
-   }
-   else{
-    this.organ = this.symptom.getOrganSymptomsByID(1);
-    this.activeIndex = 0;
-   }
-  }
-  next(id:number | undefined){
-    if(id?id < 5:undefined){
-      this.getOrgan(id?id+1:undefined);
-      this.activeIndex = this.organ?.id ? this.organ.id-1 : undefined;
-      this.progression();
-      // this.organ = this.symptom.getOrganSymptomsByID(id?id+1:undefined);
-      // this.sympts = this.organ?.sympts;
-      // this.relatedSympts = this.organ?.relatedSympts;
+}
+    //next btn logic
+    next(id:number | undefined){
+      if(id?id < 5:undefined){
+        this.getOrgan(id?id+1:undefined);
+        this.activeIndex = this.organ?.id ? this.organ.id-1 : undefined;
+        this.progression();
+        // this.organ = this.symptom.getOrganSymptomsByID(id?id+1:undefined);
+        // this.sympts = this.organ?.sympts;
+        // this.relatedSympts = this.organ?.relatedSympts;
+      }
+    }
+    //previous btn logic
+    previous(id:number | undefined){
+      if(id?id > 1:undefined){
+        this.getOrgan(id?id-1:undefined)
+        console.log(this.organ?.id);
+        this.activeIndex = this.organ?.id ? this.organ.id-1 : undefined;
+        this.progression();
+        // this.organ = this.symptom.getOrganSymptomsByID(id?id-1:undefined);
+        // this.sympts = this.organ?.sympts;
+        // this.relatedSympts = this.organ?.relatedSympts;
+    }
+    else if(id?id === 2:undefined || this.activeIndex === 1){
+      this.isAtLeaves = true;
+    }
+    else{
+      this.organ = this.symptom.getOrganSymptomsByID(1);
+      this.activeIndex = 0;
     }
   }
+
+  // shows leaves related symptoms
   showRelatedS(i:number){
        let rsympArr = this.organ?.relatedSympts;
        if(rsympArr){
@@ -147,19 +178,28 @@ export class HomeComponent implements OnInit , AfterViewInit{
        }
       }
   }
-
+  //add selected symptom to symptoms list (check btn)
   selectSympt(index:number){
       let clickedSympt:string ='';
-      if(this.sympts){
-        for(let i = 0 ; i< this.sympts.length ; i++){
-          if (i == index){
-            clickedSympt = this.sympts? this.sympts[i] : undefined;
+      if(!this.currentLanguage){
+        if(this.sympts){
+          for(let i = 0 ; i< this.sympts.length ; i++){
+            if (i == index){
+              clickedSympt = this.sympts? this.sympts[i] : undefined;
+            }
           }
         }
       }
+         if(this.currentLanguage){
+           if(this.arSympts){
+            for(let i = 0 ; i< this.arSympts.length ; i++){
+              if (i == index){
+                clickedSympt = this.arSympts? this.arSympts[i] : undefined;
+              }
+            }
+          }
+         }
     this.symptom.addToSelectedSymptoms(clickedSympt);
-    // this.toastr.success('symptom selected!' , '' ,{closeButton : true
-    //   , timeOut:2000})
     this.selected = true;
     this.removed =false;
     setTimeout(()=>{
@@ -168,12 +208,25 @@ export class HomeComponent implements OnInit , AfterViewInit{
     console.log(this.selected)
     console.log(this.selectedsympts);
     }
+
+    // add selected related symptoms of leaves 
   selectRsympt(index:number){
       let clickedRsympt:string ='';
-      if(this.relatedSympts){
-        for(let i = 0 ; i<this.relatedSympts.length ; i++){
-          if (i == index){
-            clickedRsympt = this.relatedSympts ? this.relatedSympts[i] : undefined;
+      if(!this.currentLanguage){
+        if(this.relatedSympts){
+          for(let i = 0 ; i<this.relatedSympts.length ; i++){
+            if (i == index){
+              clickedRsympt = this.relatedSympts ? this.relatedSympts[i] : undefined;
+            }
+          }
+        }
+      }
+      else if(this.currentLanguage){
+        if(this.arRelatedSympts){
+          for(let i = 0 ; i<this.arRelatedSympts.length ; i++){
+            if (i == index){
+              clickedRsympt = this.arRelatedSympts ? this.arRelatedSympts[i] : undefined;
+            }
           }
         }
       }
@@ -186,20 +239,36 @@ export class HomeComponent implements OnInit , AfterViewInit{
     console.log(this.selectedsympts);
     }
     
+    //check if the symptom is in the symptoms list or not
     isSymptomSelected(sympt:String){
       return this.selectedsympts.includes(sympt);
      }
+    isArSymptomSelected(arSympt:String){
+      return this.selectedsympts.includes(arSympt);
+     }
 
+
+    //remove selected symptoms from the symptoms list
     removeSympt(index:number){
       let removedSympt:string ='';
-      if(this.sympts){
-        for(let i = 0 ; i<this.sympts.length ; i++){
-          if (i == index){
-            removedSympt = this.sympts? this.sympts[i] : undefined;
+      if(!this.currentLanguage){
+        if(this.sympts){
+          for(let i = 0 ; i<this.sympts.length ; i++){
+            if (i == index){
+              removedSympt = this.sympts? this.sympts[i] : undefined;
+            }
           }
         }
       }
-
+      else if(this.currentLanguage){
+        if(this.arSympts){
+          for(let i = 0 ; i<this.arSympts.length ; i++){
+            if (i == index){
+              removedSympt = this.arSympts? this.arSympts[i] : undefined;
+            }
+          }
+        }
+      }
     this.symptom.removeSelectedSymptoms(removedSympt);
     this.removed=true;
     setTimeout(()=>{
@@ -208,12 +277,25 @@ export class HomeComponent implements OnInit , AfterViewInit{
     console.log(removedSympt);
     console.log(this.selectedsympts);
     }
+
+    //remove selected related symptom from symptoms list
     removeRsympt(index:number){
       let removedRsympt:string ='';
-      if(this.relatedSympts){
-        for(let i = 0 ; i<this.relatedSympts.length ; i++){
-          if (i == index){
-            removedRsympt = this.relatedSympts? this.relatedSympts[i] : undefined;
+      if(!this.currentLanguage){
+        if(this.relatedSympts){
+          for(let i = 0 ; i<this.relatedSympts.length ; i++){
+            if (i == index){
+              removedRsympt = this.relatedSympts? this.relatedSympts[i] : undefined;
+            }
+          }
+        }
+      }
+      else if(this.currentLanguage){
+        if(this.arRelatedSympts){
+          for(let i = 0 ; i<this.arRelatedSympts.length ; i++){
+            if (i == index){
+              removedRsympt = this.arRelatedSympts? this.arRelatedSympts[i] : undefined;
+            }
           }
         }
       }
@@ -225,11 +307,16 @@ export class HomeComponent implements OnInit , AfterViewInit{
     console.log(removedRsympt);
     console.log(this.selectedsympts);
     }
+
+    //check if related symptom of leaves is in the list or not 
     isRsymptomSelected(Rsympt:String){
       return this.selectedsympts.includes(Rsympt);
      }
 
-     showResult(){
+
+     //shows Diagnosis Results (show diagnosis btn)
+
+    showResult(){
       window.scroll(50 , 50)
       this.body.nativeElement.classList.add('blur-body');
        this.loading = true;
@@ -272,6 +359,17 @@ export class HomeComponent implements OnInit , AfterViewInit{
       }
       goToConsultation(){
         this.router.navigateByUrl('/Consultation')
+      }
+
+      switchLangAr(){
+        this.lang.arabic()
+        // this.arabic = true;
+        // this.english = false;
+      }
+      switchLangEn(){
+        this.lang.english()
+      //   this.english = true;
+      //  this.arabic = false;
       }
   }
   
