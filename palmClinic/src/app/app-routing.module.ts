@@ -5,14 +5,16 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ConsultantComponent } from './components/consultant/consultant.component';
 import { LoginComponent } from './components/login/login.component';
 import { UsersConsultationsComponent } from './components/users-consultations/users-consultations.component';
+import { consAuthGuard } from './guards/cons-auth.guard';
 
 const routes: Routes = [
-  {path:'' , component:HomePageComponent},
+  {path:'' , redirectTo:'/homePage' , pathMatch:'full'},
   {path:'homePage' , component:HomePageComponent},
   {path:'login' , component:LoginComponent},
   {path:'diagnosis' , component:HomeComponent},
   {path:'Consultation' , component:ConsultantComponent},
-  {path:'userConsultations' , component:UsersConsultationsComponent},
+  {path:'userConsultations' , component:UsersConsultationsComponent , canActivate:[consAuthGuard]},
+  {path:'**' , redirectTo:'/homePage'},
 ];
 
 @NgModule({

@@ -56,6 +56,7 @@ export class SymptomsService {
     // ]
   }
   
+
   getAllSymptoms(){
     return  this.http.get("http://palmclinic.runasp.net/api/Diseases/symptomsList") 
   }

@@ -48,7 +48,6 @@ section{
 
 /* Services section styles */
 .services{
-  /* background-color: #30FF4F; */
     margin-bottom: 50px;
 }
 .services-item{
@@ -62,17 +61,38 @@ section{
     font-weight: 700;
     color: #80B918;
   }
+
+  
 .home-items .services h3{
     text-align: center;
     padding: 40px 0 30px 0;
-    font-size: 50px;
     font-weight: 700;
     color: #80B918;
+  }
+  @media(min-width:400px){
+    .home-items .services h3{
+      font-size: 50px;
+    }
+  }
+  @media(max-width:400px){
+    .home-items .services h3{
+      font-size: 30px;
+    }
   }
 .home-items .services p{
     text-align: center;
     font-weight: 300;
     font-size: 30px;
+  }
+  @media(min-width:400px){
+    .home-items .services p{
+      font-size: 30px;
+    }
+  }
+  @media(max-width:400px){
+    .home-items .services p{
+      font-size: 20px;
+    }
   }
  .home-items .services-item{
     border: 1px solid #30FF4F;

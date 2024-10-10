@@ -36,7 +36,7 @@
             </li> 
             <li class="nav-item " (click)="logout()" *ngIf="this.isLoggedIn">
              <a style="font-size: 20px; margin-bottom: 30px; color: white;" class="nav-link active"  aria-current="page"> logout<mat-icon style=" vertical-align: middle;">logout</mat-icon></a>
-            </li> 
+            </li>
              <button [hidden]="this.english" (click)="translateAr()" class="btn">arabic</button>
              <button [hidden]="!this.english" (click)="translateEn()" class="btn">english</button>
            </div>

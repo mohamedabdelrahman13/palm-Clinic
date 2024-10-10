@@ -140,9 +140,7 @@
                 </div>
                 <div class="results-item">
                     <h2>the infected parts: </h2>
-                    <span>sdnkafnan   </span>
-                    <span>sdnkafnan   </span>
-                    <span>sdnkafnan   </span>
+                    <span *ngFor="let part of this.Result?.model.parts">-{{part.e_name}}</span>
                 </div>
                 <div class="results-item">
                     <h2>symptoms:
@@ -154,7 +152,7 @@
                 <div class="results-item">
                     <h2>Disease:
                     </h2>
-                    <h4 class="mt-3">-{{this.Result?.model.e_Name}}</h4>
+                    <h4 class="mt-3">-{{this.Result?.model.disease.e_Name}}</h4>
                 </div>
                 <div class="results-item">
                     <h2>
@@ -162,13 +160,13 @@
                     </h2>
                     <h3 class="mb-5">
                         Chemical Control:
-                        <h4 class="mt-3" *ngFor="let control of this.Result?.model.e_Chemical_Control">
+                        <h4 class="mt-3" *ngFor="let control of this.Result?.model.disease.e_Chemical_Control">
                             -{{control}}
                         </h4>    
                     </h3>
                     <h3>
                         Cultural Control:
-                        <h4 class="mt-3" *ngFor="let control of this.Result?.model.e_Cultural_Control">
+                        <h4 class="mt-3" *ngFor="let control of this.Result?.model.disease.e_Cultural_Control">
                             -{{control}}
                         </h4>    
                     </h3>
@@ -194,9 +192,7 @@
                 </div>
                 <div class="results-item">
                     <h2>الاجزاء المصابة : </h2>
-                    <span>sdnkafnan   </span>
-                    <span>sdnkafnan   </span>
-                    <span>sdnkafnan   </span>
+                    <span *ngFor="let part of this.Result?.model.parts">{{part.ar_name}}-</span>
                 </div>
                 <div class="results-item">
                     <h2>الاعراض:
@@ -208,7 +204,7 @@
                 <div class="results-item">
                     <h2>التشخيص:
                     </h2>
-                    <h4 class="mt-3">.{{this.Result?.model.ar_Name}}-</h4>
+                    <h4 class="mt-3">.{{this.Result?.model.disease.ar_Name}}-</h4>
                 </div>
                 <div class="results-item">
                     <h2>
@@ -216,13 +212,13 @@
                     </h2>
                     <h3 class="mb-5">
                         التوصيات الكيميائية:
-                        <h4 class="mt-3" *ngFor="let control of this.Result?.model.ar_Chemical_Control">
+                        <h4 class="mt-3" *ngFor="let control of this.Result?.model.disease.ar_Chemical_Control">
                             .{{control}}-
                         </h4>    
                     </h3>
                     <h3>
                         التوصيات الثقافية:
-                        <h4 class="mt-3" *ngFor="let control of this.Result?.model.ar_Cultural_Control">
+                        <h4 class="mt-3" *ngFor="let control of this.Result?.model.disease.ar_Cultural_Control">
                             .{{control}}-
                         </h4>    
                     </h3>

@@ -1,7 +1,7 @@
 <section>
     <div class="home-content container-fluid">
     </div>
-    <div class="home-items container">
+    <div class="home-items container container-sm-fluid">
         <div class="about">
             <h2 class="title">Palm clinic</h2>
             
@@ -13,13 +13,13 @@
         <!-- services section starts  -->
         <div class="services mt-5">
             <h2 class="title">{{'HOME.SERVICES' | translate}}</h2>
-            <div class="row">
-                <div class="services-item item1 me-md-5 mb-5 mb-sm-5 mb-md-0  col" #item1>
+            <div class="row g-4">
+                <div class="services-item item1 col-12 col-md-6" #item1>
                     <div class="mt-5" style="text-align: center; "> <mat-icon  style=" width: 60px; height: 60px; font-size: 60px; color: #80B918;">account_circle</mat-icon></div>
                     <h3>{{'HOME.Consultations' | translate}}</h3>
                     <p>{{'HOME.ConsultationsDESC' | translate}}<a routerLink="/Consultation" routerLinkActive="router-link-active" >  try now</a></p>
                 </div>
-                <div class="services-item item2 col" #item2>
+                <div class="services-item item2 col-12 col-md-6 " #item2>
                    <div class="mt-5" style="text-align: center; "> <mat-icon  style=" width: 60px; height: 60px; font-size: 60px; color: #80B918;">check_circle</mat-icon></div>
                     <h3>{{'HOME.DIAGNOSIS' | translate}}</h3>
                     <p>{{'HOME.DIAGNOSISDESC' | translate}}<a routerLink="/diagnosis" routerLinkActive="router-link-active" >try now</a></p>
