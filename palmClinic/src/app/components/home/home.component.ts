@@ -8,6 +8,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { Route, Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguagesService } from '../../services/languages.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-home',
@@ -334,11 +336,6 @@ export class HomeComponent implements OnInit , AfterViewInit{
           console.log(this.Result.model.e_Name);
          }
         });
-      //   this.http.post('http://palmclinic.runasp.net/api/Diseases/find-by-symptoms', this.selectedsympts).subscribe((response) => {this.Result = response;
-      //   console.log(this.Result);
-        
-
-      // })
      }
 
      redefine(){
@@ -363,22 +360,28 @@ export class HomeComponent implements OnInit , AfterViewInit{
 
       switchLangAr(){
         this.lang.arabic()
-        // this.arabic = true;
-        // this.english = false;
       }
       switchLangEn(){
         this.lang.english()
-      //   this.english = true;
-      //  this.arabic = false;
+     
       }
-  }
+
+
+      exportAsPDF(){
+        const pdfElement = document.getElementById('pdfContent')
+
+        html2canvas(pdfElement!).then((canvas) => {
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF();
+          const imgWidth = 208;
+          const imgHeight = (canvas.height * imgWidth-100) / canvas.width;
+          pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+          pdf.save('Diagnosis Results.pdf');
+        });
+      }
+   }
+
   
-  
-  // hideRelatedS(){
-  //       const element = this.arrow.nativeElement as HTMLElement;
-  //       element.classList.remove('rotate')
-  //       this.symptom.notClicked()      
-  // }
 
 
 

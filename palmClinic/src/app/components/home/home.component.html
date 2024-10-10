@@ -128,7 +128,7 @@
 
 
         <!-- results when diseases found  (english)-->
-        <section *ngIf="!this.currentLanguage && isModelHasValue && this.loading === false" class="results container">
+        <section id="pdfContent" *ngIf="!this.currentLanguage && isModelHasValue && this.loading === false" class="results container">
            
             <div class="results-contents">
                 <div style="text-align: right;" class="translateBtns">
@@ -176,12 +176,17 @@
                         Done
                     </button>
                 </div>
+                <div class="text-center mb-2">
+                    <button (click)="exportAsPDF()" class="mainBtn col">
+                        export As PDF
+                    </button>
+                </div>
             </div>
         </section>
         <!-- results when diseases found  (english)-->
 
         <!-- results when diseases found  (arabic)-->
-        <section *ngIf="this.currentLanguage && isModelHasValue && this.loading === false"  class="results container">
+        <section id="pdfContent" *ngIf="this.currentLanguage && isModelHasValue && this.loading === false"  class="results container">
             <div style="text-align: right;" class="translateBtns">
                 <button *ngIf="this.currentLanguage" (click)="switchLangEn()" class="mainBtn">EN</button>
                 <button *ngIf="!this.currentLanguage"  (click)="switchLangAr()"class="mainBtn">AR</button>
@@ -226,6 +231,12 @@
                 <div class="text-center mb-2">
                     <button (click)="return()" class="mainBtn col">
                         Done
+                    </button>
+                    
+                </div>
+                <div class="text-center mb-2">
+                    <button (click)="exportAsPDF()" class="mainBtn col">
+                        export As PDF
                     </button>
                 </div>
             </div>
