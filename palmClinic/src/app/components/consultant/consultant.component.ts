@@ -27,10 +27,6 @@ export class ConsultantComponent implements OnInit{
     
   }
   ngOnInit(): void {
-      // this.snack.open('your form has been submitted successfully!' , 'close' , {
-      //   duration:3000,
-      // })
-    
       
     this.ConsultationForm = this.fb.group({
       Email:['' , Validators.required],
@@ -66,8 +62,6 @@ export class ConsultantComponent implements OnInit{
          this.loading = false;
         } , 5000)
       this.Result = response;
-      console.log(response);
-      console.log(this.photos);
     }
       ,
     error : (err)=>{

@@ -38,12 +38,7 @@ export class LoginComponent implements OnInit{
       userName:['' , Validators.required],
       password:['' , Validators.required],
     });
-
-    console.log(this.LoginForm.valid)
   }
-
-  
-
 
   onSubmit(){
     // to be removed

@@ -8,6 +8,8 @@
     background-color: rgba(255, 255, 255, 0.804);
     
 }
+
+
 @media(min-width:500px){
   .form-content{
     padding: 30px 50px;
@@ -23,6 +25,14 @@
     font-weight: bolder;
     margin: 0;
     
+}
+@media(max-width:400px){
+    .form-content legend{
+        font-size: 40px;
+        font-weight: bolder;
+        margin: 0;
+        
+    }
 }
 .form-content h3{
     font-size: 35px;

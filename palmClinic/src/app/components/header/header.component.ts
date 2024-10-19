@@ -36,7 +36,6 @@ export class HeaderComponent {
     this.login.localstor()
     this.login.logout();
     this.router.navigate(['/login'] , {replaceUrl : true})
-    console.log(this.isLoggedIn)
   }
   translateLang(lang:string){
     this.translate.use('lang')

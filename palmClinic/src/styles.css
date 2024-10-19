@@ -13,7 +13,7 @@
 }
 html, body { height: 100%;   }
 body {
-   margin: 0; font-family:Quicksand; 
+   margin: 0; font-family:Quicksand !important; 
   height: fit-content;;
   background-color:var(--backColor);
   position: relative;
@@ -308,3 +308,5 @@ body {
   }
 }
  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
