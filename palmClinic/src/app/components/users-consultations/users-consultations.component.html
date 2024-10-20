@@ -1,8 +1,63 @@
-<div class="btn">
+<div class="mb-2" style="text-align: center;">
     <button (click)="showConsult()" class="mainBtn">Show Consultations</button>
   </div>
-  
-  <section class="container-fluid mt-3">
+  <div class="table-container text-center">
+    <table>
+      <thead>
+        <tr>
+                <th>Date & Time</th>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Suggestions</th>
+                <th>Photos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let item of userConsultations; let i = index">
+          <td>{{item.datetime}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.phone}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.messsage}}
+          </td>
+          <td>
+            {{item.suggestions}}
+        </td>
+          <td>
+              <div  class="modal fade text-center" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                  <div  class="modal-dialog modal-xl">
+                    <div style="border: 3px solid var(--mainColor); border-radius: 30px;" class="modal-content">
+                      <div style="border-bottom: 1px solid var(--mainColor);" class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel">Photos</h5>
+                        <button type="button" (click)="hidePhotos()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <div *ngIf="this.clickedPhotos.length > 0">
+                              <img  width="70%" height="500px" style="margin-bottom: 20px;" *ngFor="let photo of this.clickedPhotos" [src]="photo" alt="Photo" class="img-fluid">
+                          </div>
+                          <div *ngIf="this.clickedPhotos.length == 0">
+                              No photos available
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button (click)="hidePhotos()" class="mainBtn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Hide photos</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a data-bs-toggle="modal" href="#exampleModalToggle" role="button"><button (click)="showPhotos(item.photoURL)" class="mainBtn">View photos</button></a>
+          </td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- <section class="container-fluid mt-3">
     <div class="row justify-content-center data">
       <div class="col-12">
         <div class="table-responsive">
@@ -58,7 +113,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
   
 
 

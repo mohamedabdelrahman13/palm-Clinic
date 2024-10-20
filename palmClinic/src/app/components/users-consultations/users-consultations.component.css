@@ -1,35 +1,40 @@
-.data{
+/* .data{
     width: 300%;
     background-color: white;
-    /* padding: 10px; */
     border-radius: 10px;
     border: 3px solid var(--mainColor);
+    overflow-x: auto;
     
 }
+section{
+
+}
 .scroll-section {
-    position: fixed; /* Keeps the section fixed on the screen */
-    top: 0;          /* Adjust this value based on where you want it to be */
-    right: 0;        /* You can adjust this for positioning */
-    width: 300px;    /* Set a fixed width */
-    height: 100vh;   /* Full viewport height to keep it fixed */
-    overflow-y: hidden; /* Scroll only vertically */
-    overflow-x: scroll; /* Hide horizontal scrollbar if not needed */
+    position: fixed; 
+    top: 0;          
+    right: 0;      
+    width: 300px;    
+    height: 100vh;   
+    overflow-y: hidden; 
   }
 .data thead{
     border-bottom: 2px solid var(--mainColor);
 }
+
 table tbody tr{
     border: 1px solid var(--mainColor);
     font-size: 20px;
+    white-space: nowrap;
 }
 .data table th , table tbody tr td{
     padding: 15px;
     border-right: 1px solid var(--mainColor);
+    white-space: nowrap;
 }
 
 .message{
     background-color:red;
-    /* width: 300px; */
+
 }
 
 .btn{
@@ -41,4 +46,61 @@ table tbody tr{
     height: 70px;
     width: 200px;
     font-size: 20px;
-}
+} */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: white;
+    border: 3px solid var(--mainColor);
+    border-radius: 10px;
+   
+  }
+  
+  table {
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #ddd;
+    /* max-width: 100px; */
+    white-space: nowrap; 
+  }
+  
+  thead {
+    background-color: #f2f2f2;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    table, th, td {
+      font-size: 14px; /* Adjust font size for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    th, td {
+      padding: 8px;
+    }
+  
+    table {
+      width: auto; /* Allow table to be smaller than 100% */
+    }
+  }
+
+  .mainBtn{
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+
+  .modal-dialog{
+    height: 500px;
+    white-space: unset;
+  }

@@ -1,5 +1,5 @@
 import { Block } from '@angular/compiler';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, QueryList, ViewChild, viewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit, QueryList, ViewChild, viewChild } from '@angular/core';
 import { SymptomsService } from '../../services/symptoms.service';
 import { organs } from '../../models/organs.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -16,7 +16,7 @@ import html2canvas from 'html2canvas';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit , AfterViewInit{
+export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
   @ViewChild('relatedS') relatedS!: ElementRef<HTMLElement>;
   Clicked:boolean = false;
   activeIndex:number =0;
@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit , AfterViewInit{
   selectedSymptomsDescriptionsAr: string[] = [];
   infectedParts:string[]=[];
   infectedPartsAr:string[]=[];
+  dataError:boolean = false;
 
   @ViewChild('arrow') arrow!:ElementRef<HTMLElement>
   @ViewChild('progressLine') progressLine!:ElementRef<HTMLElement>
@@ -59,21 +60,30 @@ export class HomeComponent implements OnInit , AfterViewInit{
       ,private router:Router
       ,private translate:TranslateService
       ,private lang:LanguagesService){
-        this.symptom.getAllData().subscribe((response)=>{
+        this.symptom.getAllData().subscribe({next:(response)=>{
           this.resResp = response;
           this.symptomsList = this.resResp.model;
-          console.log(this.symptomsList)
           this.organ = this.symptom.getOrganSymptoms(0);
           this.sympts = this.organ?.symptomDTOs;
           this.arSympts = this.organ?.symptomDTOs;
           this.activeIndex = 0;
-          console.log(this.organ);
-       }); 
+       },
+      
+      error:(error) => {this.dataError = true
+      this.toastr.error('error retrieving data from server' , '' , {timeOut:9000})
+      console.log(error)}}); 
     translate.setDefaultLang('en');  
     this.lang.getCurrentLang.subscribe((status)=>{
       this.currentLanguage = status;
     })
+
    
+   
+  }
+  ngOnDestroy(): void {
+    this.symptom.clearSymptoms();
+    this.selectedSymptomsDescriptions = [];
+    this.selectedSymptomsDescriptionsAr = [];
   }
   translateLang(lang:string){
     this.translate.use(lang)
@@ -131,7 +141,6 @@ export class HomeComponent implements OnInit , AfterViewInit{
    this.organ = this.symptom.getOrganSymptoms(index);
    this.sympts = this.organ?.symptomDTOs;
    this.arSympts = this.organ?.symptomDTOs;
-   console.log(this.organ.partCode);
 }
     // next btn logic
     next(index:number){
@@ -154,7 +163,6 @@ export class HomeComponent implements OnInit , AfterViewInit{
   selectSympt(index:number){
       let clickedSympt:string ='';
         if(this.sympts){
-          console.log(this.sympts[index].symptomDescription)
           for(let i = 0 ; i< this.sympts.length ; i++){
             if (i == index){
               clickedSympt = this.sympts? this.sympts[index].symptomCode: undefined;
@@ -163,6 +171,7 @@ export class HomeComponent implements OnInit , AfterViewInit{
             }
           }
         }
+        
     this.symptom.addToSelectedSymptoms(this.organ?.partCode , clickedSympt);
     this.selected = true;
     this.removed =false;
@@ -189,7 +198,6 @@ export class HomeComponent implements OnInit , AfterViewInit{
     //remove selected symptoms from the symptoms list
     removeSympt(index:number){
       let removedSympt:string ='';
-      if(!this.currentLanguage){
         if(this.sympts){
           for(let i = 0 ; i<this.sympts.length ; i++){
             if (i == index){
@@ -200,10 +208,9 @@ export class HomeComponent implements OnInit , AfterViewInit{
             }
           }
         }
-      }
     this.symptom.removeSelectedSymptoms(this.organ?.partCode , removedSympt);
-    // console.log(this.selectedsympts);
     this.removed=true;
+    this.selected = false;
     setTimeout(()=>{
       this.removed = false;
     } , 1000)
@@ -245,6 +252,8 @@ export class HomeComponent implements OnInit , AfterViewInit{
   }
       goToConsultation(){
         this.symptom.clearSymptoms();
+        this.selectedSymptomsDescriptions = [];
+        this.selectedSymptomsDescriptionsAr = [];
         this.router.navigateByUrl('/Consultation')
       }
 

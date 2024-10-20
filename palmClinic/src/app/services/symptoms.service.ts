@@ -11,7 +11,6 @@ export class SymptomsService {
   private symptomsList:organs[] = [];
   private resRes:any | undefined
   private result:any|undefined;
-  // private symptoms:any[] = [];
   private partCode:string[] = [];
   private selectedPartsAndSymptoms: { partCode: string, symptomCode: string[] }[] = [];
   private clicked = new BehaviorSubject<boolean>(false);
@@ -31,7 +30,6 @@ export class SymptomsService {
     this.http.get("http://palmclinic.runasp.net/api/Diseases/Data").subscribe((response)=>{
       this.resRes = response;
       this.symptomsList = this.resRes.model;
-      console.log(this.symptomsList)
     })
   }
   
@@ -73,10 +71,6 @@ export class SymptomsService {
     this.selectedPartsAndSymptoms = [];
     this.selectedSympts.next([]);
   }
-
-  // isInSelectedList(sympt:String){
-  //  return this.symptoms.includes(sympt) ? true : false;
-  // }
 
   getOrganSymptoms(index:number){
     let organSymptoms = this.symptomsList[index]

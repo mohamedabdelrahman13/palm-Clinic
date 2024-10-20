@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'ngx-toastr/toastr'; 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 :root{
   --mainColor:#30FF4F;
   --backColor: #0E1011;
@@ -22,7 +23,14 @@ body {
  }
 /* // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 300 to 700 */
-
+.font-arabic{
+    font-family: Tajawal;
+}
+.tajawal-light {
+    font-family: "Tajawal", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
 .quicksand-do {
   font-family: "Quicksand", sans-serif;
   font-optical-sizing: auto;
