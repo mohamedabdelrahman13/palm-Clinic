@@ -197,7 +197,16 @@ div.submit{
   position: relative;
 }
 
-
+.Btn{
+    background-color: black;
+    color: white;
+    border: 3px solid white;
+    transition: all .3s;
+}
+.Btn:hover{
+    background-color: white;
+    color: black;
+}
 
 /* animation styles */
 .light{
@@ -215,7 +224,7 @@ div.submit{
     animation-name: YellowLight;
     animation-duration: 10s;
     animation-iteration-count: infinite;
-    z-index: 1;
+    z-index: -9999;
   }
   
   .lightgreen{
@@ -230,7 +239,7 @@ div.submit{
     animation-name: GreenLight;
     animation-duration: 10s;
     animation-iteration-count: infinite;
-    z-index: 1;
+    z-index: -9999;
     overflow: hidden;
   }
   
@@ -453,3 +462,5 @@ div.submit{
         }
     }
   }
+
+  

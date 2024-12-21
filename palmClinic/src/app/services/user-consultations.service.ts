@@ -18,6 +18,6 @@ export class UserConsultationsService {
     const headers = new HttpHeaders({
       'Authorization' : `Bearer ${Token}`
     })
-    return this.http.get('http://palmclinic.runasp.net/api/Admin/Consultation' , {headers})
+    return this.http.get('https://palmclinic.runasp.net/api/Admin/Consultation' , {headers})
    }
 }

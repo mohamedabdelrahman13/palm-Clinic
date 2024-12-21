@@ -10,6 +10,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguagesService } from '../../services/languages.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -49,6 +50,8 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
   infectedParts:string[]=[];
   infectedPartsAr:string[]=[];
   dataError:boolean = false;
+  subscription!: Subscription;
+  resultSubscription!: Subscription;
 
   @ViewChild('arrow') arrow!:ElementRef<HTMLElement>
   @ViewChild('progressLine') progressLine!:ElementRef<HTMLElement>
@@ -60,7 +63,7 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
       ,private router:Router
       ,private translate:TranslateService
       ,private lang:LanguagesService){
-        this.symptom.getAllData().subscribe({next:(response)=>{
+       this.subscription = this.symptom.getAllData().subscribe({next:(response)=>{
           this.resResp = response;
           this.symptomsList = this.resResp.model;
           this.organ = this.symptom.getOrganSymptoms(0);
@@ -81,7 +84,8 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
    
   }
   ngOnDestroy(): void {
-    this.symptom.clearSymptoms();
+    this.subscription.unsubscribe();
+     this.symptom.clearSymptoms();
     this.selectedSymptomsDescriptions = [];
     this.selectedSymptomsDescriptionsAr = [];
   }
@@ -144,7 +148,7 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
 }
     // next btn logic
     next(index:number){
-      if(index < 5){
+      if(index < 4){
         this.getOrgan(index+1);
         this.activeIndex = this.activeIndex+1;
         this.progression();
@@ -152,7 +156,7 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
     }
     // previous btn logic
     previous(index:number){
-      if(index>0){
+      if(index >0){
         this.getOrgan(index-1)
         this.activeIndex = this.activeIndex-1 ;
         this.progression();
@@ -225,7 +229,7 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
        setTimeout(()=>{
          this.loading = false;
         } , 2000)
-        this.symptom.getResults().subscribe((response)=>{
+       this.resultSubscription = this.symptom.getResults().subscribe((response)=>{
           this.Result = response;
           if(this.Result.model == null){
             this.isModelNull = true; 
@@ -267,24 +271,81 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
 
 
       exportAsPDF(){
-        const pdfElement = document.getElementById('pdfContent')
-        html2canvas(pdfElement!).then((canvas) => {
-          const imgData = canvas.toDataURL('image/png');
-          const pdf = new jsPDF();
-          const imgWidth = 208;
-          const imgHeight = (canvas.height * imgWidth-100) / canvas.width;
-          pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-          pdf.save('Diagnosis Results.pdf');
-        });
+        const pdfElement = document.getElementById('pdfContent');
+        const pdfh1 = document.getElementById('pdfh1');
+        const img = document.getElementById('resIMG');
+        
+        if (pdfElement) {
+          pdfElement.classList.add('desktop-export');
+          pdfh1?.classList.add('fontSize');
+          img?.classList.add('show');
+          img?.classList.remove('hide');
+          html2canvas(pdfElement, { scale: 2 }).then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            
+            // Create a new jsPDF instance
+            const pdf = new jsPDF('p', 'mm');
+            
+            // Calculate the width and height based on the canvas dimensions
+            const pageWidth = 210; // A4 width in mm
+            const pageHeight = (canvas.height * pageWidth) / canvas.width; // Maintain aspect ratio
+            
+            // Adjust the PDF dimensions dynamically if content overflows
+            if (pageHeight > 297) { // If page height is larger than A4
+              const totalPages = Math.ceil(pageHeight / 297); // Calculate how many pages needed
+              
+              // Loop through pages and add content
+              for (let page = 0; page < totalPages; page++) {
+                const yPosition = page * 297; // Starting y position for each page
+      
+                // Add image section for the current page
+                pdf.addImage(imgData, 'PNG', 0, -yPosition, pageWidth, pageHeight);
+      
+                // If not the last page, add a new page
+                if (page < totalPages - 1) {
+                  pdf.addPage();
+                }
+              }
+            } else {
+              // If content fits on one page, just add it once
+              pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
+            }
+            pdfElement.classList.remove('desktop-export');
+            pdfh1?.classList.remove('fontSize');
+            img?.classList.remove('show');
+            img?.classList.add('hide');
+            pdf.save('Diagnosis Results.pdf');
+          });
+        }
+        
+        
       }
-   }
-
+    }
   
-
-
-
+  
+  
+  
+  
+  
+  
+  
+  // if(pdfElement){
  
 
+
+    // html2canvas(pdfElement!).then((canvas) => {
+    //   const imgData = canvas.toDataURL('image/png');
+    //   const pdf = new jsPDF('p', 'mm');
+    //   const imgWidth = 210;
+    //   const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    //   pdf.setFillColor(239, 242, 225); // Light color
+    //   pdf.rect(0, 0, 210, 297, 'F'); // Draw filled rectangle as background
+    //   pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+    //   pdf.save('Diagnosis Results.pdf');
+    
+
+    // });
+  
 
 
 

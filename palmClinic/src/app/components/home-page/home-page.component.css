@@ -6,9 +6,8 @@ section{
 
 .home-content{
   width: 100%;
-  height: 100vh;
   background-image: url('/assets/home-bg.png');
-  background-size: 100%;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   margin-top: -150px;
@@ -19,12 +18,16 @@ section{
     background-size: 150%; /* Adjust the position for tablet-sized screens */
   }
 }
-@media (min-width:0px)and(max-width:576){
+@media (min-width:0px) and (max-width:576px){
   .home-content{
-    color: #30FF4F;
-    background-position:-1000px ;
+    height: 60vh;
   }
+}
   
+@media(min-width:576px){
+  .home-content{
+    height: 90vh;
+  }  
 }
 /* about section Styles */
 .home-items{
@@ -73,26 +76,22 @@ section{
     .home-items .services h3{
       font-size: 50px;
     }
+    .home-items .services p{
+      font-size: 30px;
+    }
   }
   @media(max-width:400px){
     .home-items .services h3{
       font-size: 30px;
+    }
+    .home-items .services p{
+      font-size: 20px;
     }
   }
 .home-items .services p{
     text-align: center;
     font-weight: 300;
     font-size: 30px;
-  }
-  @media(min-width:400px){
-    .home-items .services p{
-      font-size: 30px;
-    }
-  }
-  @media(max-width:400px){
-    .home-items .services p{
-      font-size: 20px;
-    }
   }
  .home-items .services-item{
     border: 1px solid #30FF4F;
@@ -124,4 +123,8 @@ section{
 .mainBtn{
   width: 100px;
   height: 60px;
+}
+
+.directionrtl{
+  direction: rtl;
 }

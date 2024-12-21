@@ -1,226 +1,311 @@
+<section [class.arabicFont]="this.currentLanguage">
     
-        <section class="body mt-5" #body [class.blur-body]="isModelNull == true">
-                    <section class="organs container">
-                            <div class="row">
-                                <div style="text-align: center;" class="col-md-4 col-12 card organ-content" *ngFor="let organ of symptomsList; let i = index" (click)="getOrgan(i)" class="col"  (click)="setActive(i)"  style="width: 18rem; padding: 5px; text-align: center;">
-                                        <img style="border-radius: 20px;" [src]="organ.imgUrl" loading="lazy" [class.disabled]="activeIndex !== -1 && activeIndex !== i" [class.active]="activeIndex === i" (click)="setActive(i)" class="card-img-top img" height="70%" width="50%" alt="...">
-                                        <div class="card-body cont">
-                                            <h4 [hidden]="this.currentLanguage" style="color: white; cursor: pointer;" class="card-title">{{organ.partName}}</h4>
-                                            <h4 [hidden]="!this.currentLanguage" style="color: white; cursor: pointer;" class="card-title">{{organ.partNameAr}}</h4>
-                                        </div>
-                                </div>
-                                <section class="popup">
-                                    <div class="progress container">
-                                        <div #progressLine class="progress-Line"></div>
-                                    </div>
-                                    <div [hidden]="!selected" class="msg">
-                                    <mat-icon  style="line-height: 30px; width: 30px; height: 21px;">check</mat-icon> symptom selected! 
-                                    </div>
-                                    <div [hidden]="!removed" class="msg">
-                                    <mat-icon  style="line-height: 30px; width: 30px; height: 21px;">close</mat-icon> symptom removed! 
-                                    </div>
-                                </section>
-                            </div>  
-                    </section>
-                    <div class="symptoms container">
-                        <div [hidden]="this.currentLanguage" class="row container">
-                            <div  class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 symptoms-content container-sm-fluid container-md-fluid">
-                                    <div class="englishContent" *ngFor="let symptom of sympts ;let i = index">
-                                        <div class="symptom-item" *ngIf="symptom"> 
-                                            <h3> 
-                                                <span [class.disabled]="isSymptomSelected(this.organ.partCode , symptom.symptomCode)"> {{symptom.symptomDescription}}</span>
-                                                <button  [hidden]="isSymptomSelected(this.organ.partCode , symptom.symptomCode)"  (click)="selectSympt(i)" class="btn btns ms-4 ms-sm-4 ms-md-0" ><mat-icon style="font-weight: 600;"></mat-icon></button>
-                                                <button  [hidden]="!isSymptomSelected(this.organ.partCode , symptom.symptomCode)" (click)="removeSympt(i)"  class="btn btns  ms-4 ms-sm-4 ms-md-0" ><mat-icon style="font-weight: 600;">check</mat-icon></button>
-                                            </h3>
-                                        </div>
-                                    </div>             
-                            </div>
-                            <div class="row ms-1">
-                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-10 col-12 navigations">
-                                    <span (click)="previous(this.activeIndex)"><mat-icon style="width: 30px; font-size: 30px;">west</mat-icon></span>
-                                    <span (click)="next(this.activeIndex)"><mat-icon style="width: 30px; font-size: 30px;">east</mat-icon></span>
-                                </div>
-                                <div *ngIf="!this.currentLanguage" [hidden]="activeIndex !== 4" class="col-xl-9 col-lg-9 col-md-9 col-sm-10 col-12">
-                                    <button (click)="showResult()" style="border: none;" type="submit" class="submitBtn">Show diagnosis</button>
-                                </div>
-                                <div *ngIf="this.currentLanguage" [hidden]="activeIndex !== 4" class="col-xl-9 col-lg-9 col-md-9 col-sm-10 col-12">
-                                    <button (click)="showResult()" style="border: none;" type="submit" class="submitBtn">اظهار التشخيص</button>
-                                </div>
-                            </div>  
-                        </div>     
-                        <div [hidden]="!this.currentLanguage" class="row container justify-content-end">
-                            <div  class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 arabic-content symptoms-content container-sm-fluid container-md-fluid">
-                                <div class="arabicContent" *ngFor="let arsymptom of sympts ;let i = index">
-                                        <div class="text-end symptom-item" *ngIf="arsymptom"> 
-                                            <h3> 
-                                                <button  [hidden]="isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)"  (click)="selectSympt(i)"   class="btn btns me-4 me-sm-4 me-md-0" ><mat-icon style="font-weight: 600;"></mat-icon></button>
-                                                <button  [hidden]="!isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)" (click)="removeSympt(i)" class="btn btns me-4 me-sm-4 me-md-0" ><mat-icon style="font-weight: 600;">check</mat-icon></button>
-                                                <span  [class.disabled]="isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)" class="text-end" [class.disabled]="isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)">{{arsymptom.symptomDescriptionAr}}</span>
-                                            </h3>
-                                        </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row ms-1">
-                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-10 col-12 navigations">
-                                    <span (click)="previous(this.activeIndex)"><mat-icon style="width: 30px; font-size: 30px;">west</mat-icon></span>
-                                    <span (click)="next(this.activeIndex)"><mat-icon style="width: 30px; font-size: 30px;">east</mat-icon></span>
-                                </div>
-                                <div *ngIf="!this.currentLanguage" [hidden]="activeIndex !== 4" class="col-xl-9 col-lg-9 col-md-9 col-sm-10 col-12">
-                                    <button (click)="showResult()" style="border: none;" type="submit" class="submitBtn">Show diagnosis</button>
-                                </div>
-                                <div *ngIf="this.currentLanguage" [hidden]="activeIndex !== 4" class="col-xl-9 col-lg-9 col-md-9 col-sm-10 col-12">
-                                    <button (click)="showResult()" style="border: none;" type="submit" class="submitBtn">اظهار التشخيص</button>
-                                </div>
-                            </div>  
-                        </div>     
-                        <!-- english section end  -->
-                        <div class="lightyellow light"></div>
-                        <div class="lightgreen light"></div>
-                    </div>    
-        </section>
-            <!-- result when no diseases found (start) -->
-        <section *ngIf="isModelNull && this.loading === false" class="Results container" >
-                    <div class="Result-content">
-                            <p>{{this.Result?.e_Message | json}}</p>
-                            <div class="results-btns row">
-                                <button (click)="redefine()" class=" col">
-                                    redefine
-                                </button>
-                                <button (click)="goToConsultation()" class=" col">
-                                    consultant
-                                </button>
+    <section class="body mt-5"   #body [class.blur-body]="isModelNull == true">
+        <section class="organs container">
+                <div class="row">
+                    <div style="text-align: center;" class="col-md-4 col-12 card organ-content" *ngFor="let organ of symptomsList; let i = index" (click)="getOrgan(i)" class="col"  (click)="setActive(i)"  style="width: 18rem; padding: 5px; text-align: center;">
+                            <img style="border-radius: 20px;" [src]="organ.imgUrl" loading="lazy" [class.disabled]="activeIndex !== -1 && activeIndex !== i" [class.active]="activeIndex === i" (click)="setActive(i)" class="card-img-top img" height="70%" width="50%" alt="...">
+                            <div class="card-body cont m-0">
+                                <h4 [hidden]="this.currentLanguage" style="color: white; cursor: pointer;" class="card-title">{{organ.partName}}</h4>
+                                <h4 [hidden]="!this.currentLanguage" style="color: white; cursor: pointer;" class="card-title">{{organ.partNameAr}}</h4>
                             </div>
                     </div>
-        </section>
-        <!-- result when no diseases found (end) -->
+                    <section class="popup">
+                        <div class="progress container">
+                            <div #progressLine class="progress-Line"></div>
+                        </div>
+                        <div [hidden]="!selected" class="msg">
+                            <mat-icon  style="line-height: 30px; width: 30px; height: 21px;">check</mat-icon> symptom selected! 
+                        </div>
+                        <div [hidden]="!removed" class="msg">
+                            <mat-icon  style="line-height: 30px; width: 30px; height: 21px;">close</mat-icon> symptom removed! 
+                        </div>
+                    </section>
+                </div>  
+            </section>
+           <div class="navigation-arrows">
+            <div class="navigations">
+                <span (click)="previous(this.activeIndex)"><mat-icon style="width: 30px; font-size: 30px;">west</mat-icon></span>
+                <span (click)="next(this.activeIndex)"><mat-icon style="width: 30px; font-size: 30px;">east</mat-icon></span>
+            </div>
+           </div>
+        <div class="symptoms container">
+            <div [hidden]="this.currentLanguage" class="row container">
+                <div  class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 symptoms-content container-sm-fluid container-md-fluid">
+                        <div class="englishContent" *ngFor="let symptom of sympts ;let i = index">
+                            <div class="symptom-item" *ngIf="symptom"> 
+                                <h3> 
+                                    <span [class.disabled]="isSymptomSelected(this.organ.partCode , symptom.symptomCode)"> {{symptom.symptomDescription}}</span>
+                                    <button  [hidden]="isSymptomSelected(this.organ.partCode , symptom.symptomCode)"  (click)="selectSympt(i)" class="btn btns ms-4 ms-sm-4 ms-md-0" ><mat-icon style="font-weight: 600;"></mat-icon></button>
+                                    <button  [hidden]="!isSymptomSelected(this.organ.partCode , symptom.symptomCode)" (click)="removeSympt(i)"  class="btn btns  ms-4 ms-sm-4 ms-md-0" ><mat-icon style="font-weight: 600;">check</mat-icon></button>
+                                </h3>
+                            </div>
+                        </div>             
+                </div>
+            </div>     
+            <div [hidden]="!this.currentLanguage" class="row container justify-content-end">
+                <div  class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 arabic-content symptoms-content container-sm-fluid container-md-fluid">
+                    <div class="arabicContent" *ngFor="let arsymptom of sympts ;let i = index">
+                            <div class="text-end symptom-item" *ngIf="arsymptom"> 
+                                <h3> 
+                                    <button  [hidden]="isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)"  (click)="selectSympt(i)"   class="btn btns me-4 me-sm-4 me-md-0" ><mat-icon style="font-weight: 600;"></mat-icon></button>
+                                    <button  [hidden]="!isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)" (click)="removeSympt(i)" class="btn btns me-4 me-sm-4 me-md-0" ><mat-icon style="font-weight: 600;">check</mat-icon></button>
+                                    <span  [class.disabled]="isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)" class="text-end" [class.disabled]="isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)">{{arsymptom.symptomDescriptionAr}}</span>
+                                </h3>
+                            </div>
+                    </div>
+                </div>
+            </div>     
+            <!-- english section end  -->
+            <div class="lightyellow light"></div>
+            <div class="lightgreen light"></div>
+        </div>    
 
-        <!-- upword btn  -->
-        <button [hidden]="scrolled == false" (click)="goUpward()" #myButton class="up"><mat-icon style="width: 30px; font-size: 30px;">north</mat-icon>
-        </button>
-        <!-- upword btn  -->
-        
-        <!-- loading section start -->
-        <div  class="loading d-flex justify-content-center" *ngIf="this.loading === true">
-             <div class="spinner-border text-center" style="color: var(--mainColor);" role="status">        
-              </div>
-              <img class="spinner-logo" src="assets/Icon.png" alt="">
+        <div>
+            <div class="text-center" *ngIf="!this.currentLanguage" [hidden]="activeIndex !== 4">
+                <button (click)="showResult()"  type="submit" class="submitBtn">Show diagnosis</button>
+            </div>
+            <div class="text-center" *ngIf="this.currentLanguage" [hidden]="activeIndex !== 4">
+                <button (click)="showResult()"  type="submit" class="submitBtn">اظهار التشخيص</button>
+            </div>
+        </div>  
+</section>
+<!-- result when no diseases found (start) -->
+<section [hidden]="this.currentLanguage" *ngIf="isModelNull && this.loading === false" class="Results container" >
+        <div class="Result-content">
+                <p>{{this.Result?.e_Message | json}}</p>
+                <div class="results-btns row">
+                    <button (click)="redefine()" class=" col">
+                        redefine
+                    </button>
+                    <button (click)="goToConsultation()" class=" col">
+                        consultant
+                    </button>
+                </div>
         </div>
-         <!-- loading section start -->
+</section>
+<section [hidden]="!this.currentLanguage" *ngIf="isModelNull && this.loading === false" class="Results container" >
+        <div class="Result-content">
+                <p>{{this.Result?.ar_Message | json}}</p>
+                <div class="results-btns row">
+                    <button (click)="redefine()" class=" col">
+                        اعادة التشخيص
+                    </button>
+                    <button (click)="goToConsultation()" class=" col">
+                        الاستشارات
+                    </button>
+                </div>
+        </div>
+</section>
+<!-- result when no diseases found (end) -->
+
+<!-- upword btn  -->
+<button [hidden]="scrolled == false" (click)="goUpward()" #myButton class="up"><mat-icon style="width: 30px; font-size: 30px;">north</mat-icon>
+</button>
+<!-- upword btn  -->
+
+<!-- loading section start -->
+<div  class="loading d-flex justify-content-center" *ngIf="this.loading === true">
+<div class="spinner-border text-center" style="color: var(--mainColor);" role="status">        
+</div>
+<img class="spinner-logo" src="assets/Icon.png" alt="">
+</div>
 
 
-        <!-- results when diseases found  (english)-->
-        <section id="pdfContent" *ngIf="!this.currentLanguage && isModelHasValue && this.loading === false" class="results container">
+<!-- loading section start -->
+<!-- results when diseases found  (english)-->
+
+<section *ngIf="!this.currentLanguage && isModelHasValue && this.loading === false" class="results container">
+
+<div class="results-contents">
+    <div style="text-align: right;" class="translateBtns">
+        <button *ngIf="this.currentLanguage" (click)="switchLangEn()" class="mainBtn">EN</button>
+        <button *ngIf="!this.currentLanguage" (click)="switchLangAr()"class="mainBtn">AR</button>
+    </div>       
+    <div id="pdfContent">
+        <div class="title p-5">
+            <h1 id="pdfh1">
+                <img src="assets/resultLogo.jpg" width="120px" height="120px" alt="">
+                Diagnosis Results
+            </h1>
+        </div>
+       
+        <div class=" d-flex justify-content-between mb-3">
+            <div class="results-item pb-3 me-4" style="width: 100%;">
+                <h2> infected parts: </h2>
+                <span *ngFor="let part of this.Result?.model.infectedParts">{{part.partName}}</span>
+            </div>
+            <div class="results-item pb-3" style="width: 100%; text-align: center;">
+                <h2>Disease:
+                </h2>
+                <h4 class="mt-3">-{{this.Result?.model.disease.diseaseName}}</h4>
+            </div>
+        </div>
+        <div class="results-item pb-3 mb-3" style="width: 100%;" >
+            <h2 style="text-align: center;">symptoms: </h2>
+            <h4 class="mt-3"  *ngFor="let description of selectedSymptomsDescriptions">
+                -{{description}}
+            </h4>
+        </div>
+        <div  class="results-item pb-3">
+            <h2 style="text-align: center;">
+                Control:
+            </h2>
+            <h3 class="mb-2">
+                Chemical Control:
+                <h4 class="mt-3">
+                    -{{this.Result?.model.disease.chemicalControl}}
+                </h4>    
+            </h3>
+            <h3>
+                Cultural Control:
+                <h4 class="mt-2">
+                    -{{this.Result?.model.disease.culturalControl}}
+                </h4>    
+            </h3>
+        </div>
+        <div class="logo text-center mt-4 p-3 hide" id="resIMG">
+            <img src="assets/palmClinicResult.png" width="500px" height="250px" alt="">
+        </div>
+    </div>
+    <div class="submitBtns text-center mb-2">
+        <button (click)="return()" class="mainBtn col">
+            Done
+        </button>
+    </div>
+    <div class="submitBtns text-center mb-2">
+        <button (click)="exportAsPDF()" class="mainBtn col">
+            export As PDF
+        </button>
+    </div>
+</div>
+</section>
+
+<!-- results when diseases found  (english)-->
+
+<!-- results when diseases found  (arabic)-->
+<section class="arabicFont" *ngIf="this.currentLanguage && isModelHasValue && this.loading === false" class="results container">
+    <div style="text-align: right;" class="translateBtns">
+        <button *ngIf="this.currentLanguage" (click)="switchLangEn()" class="mainBtn">EN</button>
+        <button *ngIf="!this.currentLanguage" (click)="switchLangAr()"class="mainBtn">AR</button>
+    </div>   
+    <div class="results-contents">
+        <div id="pdfContent">
+            <div class="title p-5 mt-3 mb-3">
+                <h1 id="pdfh1">
+                    <img src="assets/resultLogo.jpg" width="120px" height="120px" alt="">
+                   نتيجة التشخيص
+                </h1>
+            </div>
            
-            <div class="results-contents">
-                <div style="text-align: right;" class="translateBtns">
-                    <button *ngIf="this.currentLanguage" (click)="switchLangEn()" class="mainBtn">EN</button>
-                    <button *ngIf="!this.currentLanguage" (click)="switchLangAr()"class="mainBtn">AR</button>
-                </div>       
-                <div class="title mt-4 mb-4">
-                    <h1>Diagnosis Results</h1>
+            <div class=" d-flex justify-content-between mb-3">
+                <div class="results-item pb-3 me-4" style="width: 100%;">
+                    <h2> الاجزاء المصابة: </h2>
+                    <span *ngFor="let part of this.Result?.model.infectedParts">{{part.partNameAr}}-</span>
                 </div>
-                <div class="results-item">
-                    <h2>the infected parts: </h2>
-                    <span *ngFor="let part of this.Result?.model.infectedParts">{{part.partName}}</span>
-                </div>
-                <div class="results-item">
-                    <h2>symptoms:
+                <div class="results-item pb-3" style="width: 100%; text-align: center;">
+                    <h2>التشخيص:
                     </h2>
-                    <h4 class="mt-3" style="width: 100%;" *ngFor="let description of selectedSymptomsDescriptions">
-                        -{{description}}
-                    </h4>
-                </div>
-                <div class="results-item">
-                    <h2>Disease:
-                    </h2>
-                    <h4 class="mt-3">-{{this.Result?.model.disease.diseaseName}}</h4>
-                </div>
-                <div class="results-item">
-                    <h2>
-                        Control:
-                    </h2>
-                    <h3 class="mb-5">
-                        Chemical Control:
-                        <h4 class="mt-3">
-                            -{{this.Result?.model.disease.chemicalControl}}
-                        </h4>    
-                    </h3>
-                    <h3>
-                        Cultural Control:
-                        <h4 class="mt-3">
-                            -{{this.Result?.model.disease.culturalControl}}
-                        </h4>    
-                    </h3>
-                </div>
-                <div class="submitBtns text-center mb-2">
-                    <button (click)="return()" class="mainBtn col">
-                        Done
-                    </button>
-                </div>
-                <div class="submitBtns text-center mb-2">
-                    <button (click)="exportAsPDF()" class="mainBtn col">
-                        export As PDF
-                    </button>
+                    <h4 class="mt-3">{{this.Result?.model.disease.diseaseNameAr}}-</h4>
                 </div>
             </div>
-        </section>
-        <!-- results when diseases found  (english)-->
+            <div class="results-item pb-3 mb-3" style="width: 100%;" >
+                <h2 style="text-align: center;">الاعراض: </h2>
+                <h4 class="mt-3"  *ngFor="let description of selectedSymptomsDescriptionsAr">
+                    {{description}}-
+                </h4>
+            </div>
+            <div  class="results-item pb-3">
+                <h2 style="text-align: center;">
+                    التوصيات:
+                </h2>
+                <h3 class="mb-5">
+                    التوصيات الكيميائية:
+                    <h4 class="mt-2">
+                        {{this.Result?.model.disease.arChemicalControl}}-
+                    </h4>    
+                </h3>
+                <h3>
+                    التوصيات الثقافية:
+                    <h4 class="mt-2">
+                        {{this.Result?.model.disease.arCulturalControl}}-
+                    </h4>    
+                </h3>
+            </div>
+        <div class="logo text-center mt-4 p-3 hide" id="resIMG">
+                <img src="assets/palmClinicResult.png" width="500px" height="250px" alt="">
+            </div>
+        </div>
+        <div class="submitBtns text-center mb-2">
+            <button (click)="return()" class="mainBtn col">
+                تم
+            </button>
+        </div>
+        <div class="submitBtns text-center mb-2">
+            <button (click)="exportAsPDF()" class="mainBtn col">
+                حفظ النتيجة
+            </button>
+        </div>
+    </div>
+    </section>
+</section>
+ 
 
-        <!-- results when diseases found  (arabic)-->
-        <section id="pdfContent" *ngIf="this.currentLanguage && isModelHasValue && this.loading === false"  class="results container">
+            <!-- <section *ngIf="this.currentLanguage && isModelHasValue && this.loading === false"  class="results container">
             <div style="text-align: right;" class="translateBtns">
                 <button *ngIf="this.currentLanguage" (click)="switchLangEn()" class="mainBtn">EN</button>
                 <button *ngIf="!this.currentLanguage"  (click)="switchLangAr()"class="mainBtn">AR</button>
             </div>
             <div class="results-contents" style="text-align: right;">
-                <div class="title mt-4 mb-4">
-                    <h1>نتيجة التشخيص</h1>
-                </div>
-                <div class="results-item">
-                    <h2>الاجزاء المصابة : </h2>
-                    <span *ngFor="let part of this.Result?.model.infectedParts">{{part.partNameAr}}</span>
-                </div>
-                <div class="results-item">
-                    <h2>الاعراض:
-                    </h2>
-                    <h4 class="mt-3" style="width: 100%;" *ngFor="let description of selectedSymptomsDescriptionsAr">
-                        {{description}}-
-                    </h4>
-                </div>
-                <div class="results-item">
-                    <h2>التشخيص:
-                    </h2>
-                    <h4 class="mt-3">.{{this.Result?.model.disease.diseaseNameAr}}-</h4>
-                </div>
-                <div class="results-item">
-                    <h2>
-                        التوصيات:
-                    </h2>
-                    <h3 class="mb-5">
-                        التوصيات الكيميائية:
-                        <h4 class="mt-3">
-                            .{{this.Result?.model.disease.arChemicalControl}}-
-                        </h4>    
-                    </h3>
-                    <h3>
-                        التوصيات الثقافية:
-                        <h4 class="mt-3" >
-                            .{{this.Result?.model.disease.arCulturalControl}}-
-                        </h4>    
-                    </h3>
+                <div id="pdfContent">
+                    <div class="title p-5 mt-4 mb-4">
+                        <h1>نتيجة التشخيص</h1>
+                    </div>
+                    <div class="results-item">
+                        <h2>الاجزاء المصابة : </h2>
+                        <span *ngFor="let part of this.Result?.model.infectedParts">{{part.partNameAr}}</span>
+                    </div>
+                    <div class="results-item">
+                        <h2>الاعراض:
+                        </h2>
+                        <h4 class="mt-3" style="width: 100%;" *ngFor="let description of selectedSymptomsDescriptionsAr">
+                            {{description}}-
+                        </h4>
+                    </div>
+                    <div class="results-item">
+                        <h2>التشخيص:
+                        </h2>
+                        <h4 class="mt-3">.{{this.Result?.model.disease.diseaseNameAr}}-</h4>
+                    </div>
+                    <div class="results-item">
+                        <h2>
+                            التوصيات:
+                        </h2>
+                        <h3 class="mb-5">
+                            التوصيات الكيميائية:
+                            <h4 class="mt-3">
+                                .{{this.Result?.model.disease.arChemicalControl}}-
+                            </h4>    
+                        </h3>
+                        <h3>
+                            التوصيات الثقافية:
+                            <h4 class="mt-3" >
+                                .{{this.Result?.model.disease.arCulturalControl}}-
+                            </h4>    
+                        </h3>
+                    </div>
                 </div>
                 <div class="text-center mb-2">
                     <button (click)="return()" class="mainBtn col">
-                        Done
+                        تم
                     </button>
                     
                 </div>
                 <div class="text-center mb-2">
                     <button (click)="exportAsPDF()" class="mainBtn col">
-                        export As PDF
+                        حفظ النتيجة
                     </button>
                 </div>
             </div>
-        </section>
-        <!-- results when diseases found  (arabic)-->
+            </section> -->
+            <!-- results when diseases found  (arabic)--> 

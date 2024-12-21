@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { LanguagesService } from '../../services/languages.service';
 // import {MatSnackBar} from '@angular/material/snack-bar';
 // import {MatButtonModule} from '@angular/material/button';
 // import {MatInputModule} from '@angular/material/input';
@@ -21,13 +22,15 @@ export class ConsultantComponent implements OnInit{
   loading:boolean = false;
   Result:any | undefined; 
   successMessage:string = '';
+  currentLanguage:boolean = false;
   constructor(private fb:FormBuilder 
     ,private http:HttpClient
-    ,private taost:ToastrService){
-    
+    ,private taost:ToastrService
+    , private language:LanguagesService){
+    this.language.getCurrentLang.subscribe((status)=>{this.currentLanguage = status})
   }
   ngOnInit(): void {
-      
+    window.scrollTo(0, 0);
     this.ConsultationForm = this.fb.group({
       Email:['' , Validators.required],
       Title:['' , Validators.required],
@@ -57,6 +60,7 @@ export class ConsultantComponent implements OnInit{
       {next:
         
     (response : any)=>{
+      console.log(response)
       this.loading = true;
        setTimeout(()=>{
          this.loading = false;

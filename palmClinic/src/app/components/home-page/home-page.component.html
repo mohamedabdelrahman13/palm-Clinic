@@ -1,4 +1,4 @@
-<section>
+<section [class.arabicFont]="this.currentLanguage">
     <div class="home-content container-fluid">
     </div>
     <div class="home-items container container-sm-fluid">
@@ -17,12 +17,18 @@
                 <div class="services-item item1 col-12 col-md-6" #item1>
                     <div class="mt-5" style="text-align: center; "> <mat-icon  style=" width: 60px; height: 60px; font-size: 60px; color: #80B918;">account_circle</mat-icon></div>
                     <h3>{{'HOME.Consultations' | translate}}</h3>
-                    <p>{{'HOME.ConsultationsDESC' | translate}}<a routerLink="/Consultation" routerLinkActive="router-link-active" >  try now</a></p>
+                    <p #consP>{{'HOME.ConsultationsDESC' | translate}}
+                        <a [hidden]="this.currentLanguage" routerLink="/Consultation" routerLinkActive="router-link-active" >  try now</a>
+                        <a [hidden]="!this.currentLanguage" routerLink="/Consultation" routerLinkActive="router-link-active" >  جرب الان</a>
+                    </p>
                 </div>
                 <div class="services-item item2 col-12 col-md-6 " #item2>
                    <div class="mt-5" style="text-align: center; "> <mat-icon  style=" width: 60px; height: 60px; font-size: 60px; color: #80B918;">check_circle</mat-icon></div>
                     <h3>{{'HOME.DIAGNOSIS' | translate}}</h3>
-                    <p>{{'HOME.DIAGNOSISDESC' | translate}}<a routerLink="/diagnosis" routerLinkActive="router-link-active" >try now</a></p>
+                    <p>{{'HOME.DIAGNOSISDESC' | translate}}
+                        <a [hidden]="this.currentLanguage" routerLink="/diagnosis" routerLinkActive="router-link-active" >try now</a>
+                        <a [hidden]="!this.currentLanguage" routerLink="/diagnosis" routerLinkActive="router-link-active" >جرب الان</a>
+                    </p>
                 </div>
             </div>
         </div>

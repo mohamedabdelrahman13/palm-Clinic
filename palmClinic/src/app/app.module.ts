@@ -19,10 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSnackBarAction,MatSnackBarActions,MatSnackBarLabel} from '@angular/material/snack-bar';
 import { LoginComponent } from './components/login/login.component';
-// import {MatSnackBar} from '@angular/material/snack-bar';
-// import {MatButtonModule} from '@angular/material/button';
-// import {MatInputModule} from '@angular/material/input';
-// import {MatFormFieldModule} from '@angular/material/form-field';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -60,10 +56,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSnackBarAction,
     MatSnackBarActions,
     MatSnackBarLabel,
-    // MatSnackBar,
-    // MatButtonModule,
-    // MatInputModule,
-    // MatFormFieldModule
 
     
   ],

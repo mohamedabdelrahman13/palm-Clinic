@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { LanguagesService } from '../../services/languages.service';
 
 @Component({
   selector: 'app-home-page',
@@ -8,10 +9,15 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomePageComponent {
   @ViewChild('aboutP') aboutP!:ElementRef<HTMLElement>
+  @ViewChild('consP') consP!:ElementRef<HTMLElement>
   @ViewChild('item1') item1!:ElementRef<HTMLElement>
   @ViewChild('item2') item2!:ElementRef<HTMLElement>
-  constructor(private translate:TranslateService){
+  currentLanguage:boolean = false;
+  constructor(private translate:TranslateService , private lang:LanguagesService){
     translate.setDefaultLang('en');
+    this.lang.getCurrentLangHome.subscribe((status)=>{
+      this.currentLanguage = status
+    })
   }
   translateLang(lang:string){
     this.translate.use(lang)
@@ -30,8 +36,11 @@ export class HomePageComponent {
       this.item2.nativeElement.classList.add('mainPos')
       this.item2.nativeElement.classList.remove('item2')
     }
+      if (!this.currentLanguage){
+        this.aboutP.nativeElement.classList.add('directionrtl')
+        this.consP.nativeElement.classList.add('directionrtl')
+      }
 
   }
-
-  
+   
 }

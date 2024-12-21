@@ -5,7 +5,7 @@
     border-radius: 10px;
     width: 100%;
     height: auto;
-    background-color: rgba(255, 255, 255, 0.804);
+    background-color: rgba(255, 255, 255, 0.706);
     
 }
 
@@ -152,6 +152,7 @@ div.addSign span{
 .mainBtn{
     width: 300px;
     height: 80px;
+   background-image: linear-gradient(to bottom , #AACC00 , #0FB127);
 }
 @media(max-width:388px){
     .mainBtn{
