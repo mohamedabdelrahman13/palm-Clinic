@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit{
                       setTimeout(()=>{
                       this.loading = false;
                       } , 1000)
-              this.http.post('http://palmclinic.runasp.net/api/Admin/Login' , this.LoginForm.value , {headers}).subscribe(
+              this.http.post('https://mohamedabdelr-001-site1.jtempurl.com/api/Admin/Login' , this.LoginForm.value , {headers}).subscribe(
                 {next:(response) =>{
                        if(response){
                     this.result = response;

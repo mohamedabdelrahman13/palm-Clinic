@@ -1,5 +1,4 @@
-<section [class.arabicFont]="this.currentLanguage">
-    
+<section [class.arabicFont]="this.currentLanguage">    
     <section class="body mt-5"   #body [class.blur-body]="isModelNull == true">
         <section class="organs container">
                 <div class="row">
@@ -36,8 +35,8 @@
                             <div class="symptom-item" *ngIf="symptom"> 
                                 <h3> 
                                     <span [class.disabled]="isSymptomSelected(this.organ.partCode , symptom.symptomCode)"> {{symptom.symptomDescription}}</span>
-                                    <button  [hidden]="isSymptomSelected(this.organ.partCode , symptom.symptomCode)"  (click)="selectSympt(i)" class="btn btns ms-4 ms-sm-4 ms-md-0" ><mat-icon style="font-weight: 600;"></mat-icon></button>
-                                    <button  [hidden]="!isSymptomSelected(this.organ.partCode , symptom.symptomCode)" (click)="removeSympt(i)"  class="btn btns  ms-4 ms-sm-4 ms-md-0" ><mat-icon style="font-weight: 600;">check</mat-icon></button>
+                                    <button  [hidden]="isSymptomSelected(this.organ.partCode , symptom.symptomCode)"  (click)="selectSympt(i)" class="btn btns ms-4 ms-sm-4 ms-md-5" ><mat-icon style="font-weight: 600;"  class="symptoms-Check-icon"></mat-icon></button>
+                                    <button  [hidden]="!isSymptomSelected(this.organ.partCode , symptom.symptomCode)" (click)="removeSympt(i)"  class="btn btns  ms-4 ms-sm-4 ms-md-5" ><mat-icon style="font-weight: 600;"  class="symptoms-Check-icon">check</mat-icon></button>
                                 </h3>
                             </div>
                         </div>             
@@ -48,8 +47,8 @@
                     <div class="arabicContent" *ngFor="let arsymptom of sympts ;let i = index">
                             <div class="text-end symptom-item" *ngIf="arsymptom"> 
                                 <h3> 
-                                    <button  [hidden]="isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)"  (click)="selectSympt(i)"   class="btn btns me-4 me-sm-4 me-md-0" ><mat-icon style="font-weight: 600;"></mat-icon></button>
-                                    <button  [hidden]="!isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)" (click)="removeSympt(i)" class="btn btns me-4 me-sm-4 me-md-0" ><mat-icon style="font-weight: 600;">check</mat-icon></button>
+                                    <button  [hidden]="isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)"  (click)="selectSympt(i)"   class="btn btns me-4 me-sm-4 me-md-0" ><mat-icon style="font-weight: 600;" class="symptoms-Check-icon"></mat-icon></button>
+                                    <button  [hidden]="!isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)" (click)="removeSympt(i)" class="btn btns me-4 me-sm-4 me-md-0" ><mat-icon style="font-weight: 600;" class="symptoms-Check-icon">check</mat-icon></button>
                                     <span  [class.disabled]="isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)" class="text-end" [class.disabled]="isSymptomSelected(this.organ.partCode , arsymptom.symptomCode)">{{arsymptom.symptomDescriptionAr}}</span>
                                 </h3>
                             </div>
@@ -220,13 +219,13 @@
                     التوصيات:
                 </h2>
                 <h3 class="mb-5">
-                    التوصيات الكيميائية:
+                    المكافحة الكيميائية:
                     <h4 class="mt-2">
                         {{this.Result?.model.disease.arChemicalControl}}-
                     </h4>    
                 </h3>
                 <h3>
-                    التوصيات الثقافية:
+                    العمليات الزراعية:
                     <h4 class="mt-2">
                         {{this.Result?.model.disease.arCulturalControl}}-
                     </h4>    

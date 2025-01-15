@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { LanguagesService } from '../../services/languages.service';
+import { environment } from '../../Environment/environment';
 // import {MatSnackBar} from '@angular/material/snack-bar';
 // import {MatButtonModule} from '@angular/material/button';
 // import {MatInputModule} from '@angular/material/input';
@@ -56,7 +57,7 @@ export class ConsultantComponent implements OnInit{
         formData.append('photos', photo);
       });
     }
-    this.http.post("http://palmclinic.runasp.net/api/Diseases/Consultation" , formData).subscribe(
+    this.http.post(`${environment.apiBaseUrl}/Diseases/Consultation` , formData).subscribe(
       {next:
         
     (response : any)=>{

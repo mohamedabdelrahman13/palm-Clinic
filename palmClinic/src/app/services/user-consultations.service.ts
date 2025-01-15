@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../Environment/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,6 @@ export class UserConsultationsService {
     const headers = new HttpHeaders({
       'Authorization' : `Bearer ${Token}`
     })
-    return this.http.get('https://palmclinic.runasp.net/api/Admin/Consultation' , {headers})
+    return this.http.get(`${environment.apiBaseUrl}/Admin/Consultation` , {headers})
    }
 }

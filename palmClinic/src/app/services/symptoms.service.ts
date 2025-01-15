@@ -3,6 +3,7 @@ import { organs } from '../models/organs.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from '../Environment/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class SymptomsService {
   
  
   constructor(private http:HttpClient , private translate:TranslateService) { 
-    this.http.get("http://palmclinic.runasp.net/api/Diseases/Data").subscribe((response)=>{
+    this.http.get(`${environment.apiBaseUrl}/Diseases/Data`).subscribe((response)=>{
       this.resRes = response;
       this.symptomsList = this.resRes.model;
     })
@@ -35,7 +36,7 @@ export class SymptomsService {
   
 
   getAllData(){
-    return  this.http.get("http://palmclinic.runasp.net/api/Diseases/Data") 
+    return  this.http.get(`${environment.apiBaseUrl}/Diseases/Data`) 
   }
   getClicked(){
     this.clicked.next(true) ;
@@ -78,6 +79,8 @@ export class SymptomsService {
   }
   
   getResults(){
-    return this.http.post("http://palmclinic.runasp.net/api/Diseases/find-disease" , this.selectedPartsAndSymptoms)
+    return this.http.post(`${environment.apiBaseUrl}/Diseases/find-disease` , this.selectedPartsAndSymptoms)
   }
 }
+
+

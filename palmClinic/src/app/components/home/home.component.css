@@ -71,12 +71,7 @@ div.symptoms div h3{
     align-items: center;
     cursor: pointer;
 }
-@media(max-width:576px){
-    div.symptoms div.symptom-item h3{
-        font-size: 25px;
-        line-height: 50px;
-}
-}
+
 div.symptoms div h3 span{
     transition:all .3s;   
 }
@@ -85,21 +80,6 @@ div.symptoms div h3 span{
     transform: rotateY(180deg);
     color: var(--mainColor);
 }
-
-/* div.symptoms div.navigations{
-    height: 80px;
-    color: white;
-    background-color: var(--mainColor);
-    border: 2px solid white;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, .2);
-    overflow-wrap:break-word;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-} */
-
 .navigation-arrows{
     display: flex;
     justify-content: center;
@@ -154,16 +134,25 @@ h2:last-child span:hover{
 .btns{
     background-color: rgba(0, 0, 0);
     color: #ffffff;
-    min-width: 50px;
-    min-height: 50px;
+    width: 50px;
+    height: 50px;
     font-size: 30px;
     font-weight: 600px;
     line-height: 25px;
     border: 3px solid white;
     border-radius: 10px;
     transition: .3s;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
+.symptoms-Check-icon{
+    font-size: 1.5rem;        /* Adjust icon size as needed */
+
+}
 
 .submitBtn{
    width: 400px;
@@ -181,36 +170,7 @@ h2:last-child span:hover{
    color: black;
 }
 
-@media(max-width:768px){
-    .submitBtn{
-        width: 250px;
-        margin-top: 20px;
-        font-size: 25px;
-        height: 65px;
-    }
-}
-@media(min-width:768px){
-    .submitBtn{
-        height: 80px;
-        font-size: 40px;
-    }
-}
-.rs{
-    width: 0;
-    height: 0;
-    transition: all 1s;
-}
-.show{
-    width:100%;
-    height: 100%;
-}
 
-@media(max-width:768px){
-    div.symptoms div h3{
-        display: block;
-        overflow: hidden;
-    }
-}
 
 .Results{
     width: 100%;
@@ -262,57 +222,7 @@ h2:last-child span:hover{
 .results-btns button:first-child{
    margin-right: 20px;
 }
-@media only screen and (min-width:768px) and (max-width:1200px) {
-    .results-btns{
-        margin-top: 50px;
-    }
-    .results-btns button{
-       margin: 0 0 20px 0 ;
-    }
-    .results-btns button:first-child{
-       margin-right: 0;
-    }
-}
-@media(max-width:405px){
-    .Result-content p{
-       font-size: 25px;
-    }
-    .results-btns button{
-        margin: 0 0 20px 0 ;
-        width: 300px;
-        height: 50px;
-        font-size: 20px;
-    }
-    .Results{
-            height: 100%;
-         }  
-}
-@media(max-width:768px){
-    .results-btns{
-        margin-top: 50px;
-    }
-    .results-btns button{
-       margin: 0 0 20px 0 ;
-       width: 100px;
-       height: 70px;
-       font-size: 30px;
-    }
-    .results-btns button:first-child{
-       margin-right: 0;
-    }
-    .Result-content{
-        top: 0;
-        left: 0;
-        transform: translate(0 , 0);
-        padding: 20px;
-        text-align: center;
-        width: 100%;
-        height: 20%;
-    }
-    .Results{
-       height: 90%;
-    }   
-}
+
 
 .Result-content button{
     background-image: linear-gradient(to bottom , #AACC00 , #0FB127);
@@ -358,23 +268,13 @@ h2:last-child span:hover{
     font-weight: 700;
 }
 
-.w1{
-  width: 20%;
-}
-.w2{
-  width: 40%;
-}
-.w3{
-    width: 60%;
+.w1{ width: 20%;}
+.w2{ width: 40%;}
+.w3{ width: 60%;}
+.w4{ width: 80%;}
+.w5{width: 100%;}
 
-}
-.w4{
-    width: 80%;
 
-}
-.w5{
-    width: 100%;
-}
 .showMessage{
     display: block;
 }
@@ -426,14 +326,35 @@ h2:last-child span:hover{
     
 }
 
+
+
+
+
+
+
+/* ------------------------responsive design-------------------------  */
+
+@media(max-width:405px){
+    .Result-content p{
+       font-size: 25px;
+    }
+    .results-btns button{
+        margin: 0 0 20px 0 ;
+        width: 300px;
+        height: 50px;
+        font-size: 20px;
+    }
+    .Results{
+            height: 100%;
+         }  
+}
+
 @media(max-width:450px){
     .results .title h1{
        font-size: 20px;
-       /* min-width: 100%; */
        padding: 10px 10px 10px 30px;
 
     }
-
     .results .title h1 img{
         width: 80px;
         height: 100px;
@@ -443,6 +364,86 @@ h2:last-child span:hover{
     }
 }
 
+@media(min-width:500px){
+    .loading div{
+        width: 400px;
+        height: 400px;
+     }
+}
+@media(max-width:500px){
+    .results-contents .submitBtns .mainBtn{
+      width: 160px;
+      height: 50px;
+      font-size: 20px;
+    }
+    .loading div{
+        width: 300px;
+        height: 300px;
+     }
+}
+
+/* symptoms responsive */
+@media(max-width:576px){
+    div.symptoms div.symptom-item h3{
+        font-size: 16px;
+        line-height: 25px;
+   }
+}
+/* symptoms responsive */
+
+
+@media only screen and (min-width:768px) and (max-width:1200px) {
+    .results-btns{
+        margin-top: 50px;
+    }
+    .results-btns button{
+       margin: 0 0 20px 0 ;
+    }
+    .results-btns button:first-child{
+       margin-right: 0;
+    }
+}
+
+@media(max-width:768px){
+    .submitBtn{
+        width: 250px;
+        margin-top: 20px;
+        font-size: 25px;
+        height: 65px;
+    }
+}
+@media(min-width:768px){
+    .submitBtn{
+        height: 80px;
+        font-size: 40px;
+    }
+}
+@media(max-width:768px){
+    .results-btns{
+        margin-top: 50px;
+    }
+    .results-btns button{
+       margin: 0 0 20px 0 ;
+       width: 100px;
+       height: 70px;
+       font-size: 30px;
+    }
+    .results-btns button:first-child{
+       margin-right: 0;
+    }
+    .Result-content{
+        top: 0;
+        left: 0;
+        transform: translate(0 , 0);
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        height: 20%;
+    }
+    .Results{
+       height: 90%;
+    }   
+}
 @media(min-width:450px) and (max-width:576px){
     .results .title h1{
         font-size: 25px;
@@ -479,17 +480,9 @@ h2:last-child span:hover{
         height: 120px;
     }
 }
-/* @media(max-width:992px){
-    .results .title h1{
-        font-size: 40px;
-    }
-    .results .title h1 img{
-        width: 100px;
-        height: 100px;
-    }
-} */
 
-/* large screens and above */
+
+
 @media(min-width:992px){
     .results .title h1{
         font-size: 55px;
@@ -500,11 +493,12 @@ h2:last-child span:hover{
         height: 150px;
     }
 }
-/* @media(min-width:992){
-    .results .title h1{
-        font-size: 40px;
-    }
-} */
+/* ------------------------responsive design-------------------------  */
+
+
+
+
+
 .results h2{
     background-color:  #565656;
     width: 100%;
@@ -556,23 +550,6 @@ h2:last-child span:hover{
   height: 60px;
 }
 
-@media(min-width:500px){
-    .loading div{
-        width: 400px;
-        height: 400px;
-     }
-}
-@media(max-width:500px){
-    .results-contents .submitBtns .mainBtn{
-      width: 160px;
-      height: 50px;
-      font-size: 20px;
-    }
-    .loading div{
-        width: 300px;
-        height: 300px;
-     }
-}
 .mainBtn{
      background-image: linear-gradient(to bottom , #AACC00 , #0FB127);
 }
@@ -598,8 +575,14 @@ h2:last-child span:hover{
     height: 130px;
     
   }
-/* .fontSize{
-  font-size: 40px;
-  width: 70%; 
-} */
 
+
+.rs{
+    width: 0;
+    height: 0;
+    transition: all 1s;
+}
+.show{
+    width:100%;
+    height: 100%;
+}
