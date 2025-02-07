@@ -37,7 +37,9 @@
                       </div>
                       <div class="modal-body">
                           <div *ngIf="this.clickedPhotos.length > 0">
-                              <img  width="70%" height="500px" style="margin-bottom: 20px;" *ngFor="let photo of this.clickedPhotos" [src]="photo" alt="Photo" class="img-fluid">
+                            <div class="Consult-Photos"  *ngFor="let photo of this.clickedPhotos" >
+                              <img  width="70%" height="500px" style="margin-bottom: 20px;" [src]="photo" alt="Photo" class="img-fluid">
+                            </div>
                           </div>
                           <div *ngIf="this.clickedPhotos.length == 0">
                               No photos available

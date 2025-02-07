@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../Environment/environment';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,8 +42,7 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmit(){
-    // to be removed
-    console.log(this.locals)
+    // console.log(this.locals)
       const headers = new HttpHeaders({
         'Content-Type' : 'application/json'
       });
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit{
                       setTimeout(()=>{
                       this.loading = false;
                       } , 1000)
-              this.http.post('https://mohamedabdelr-001-site1.jtempurl.com/api/Admin/Login' , this.LoginForm.value , {headers}).subscribe(
+              this.http.post(`${environment.apiBaseUrl}/Admin/Login` , this.LoginForm.value , {headers}).subscribe(
                 {next:(response) =>{
                        if(response){
                     this.result = response;
@@ -74,7 +74,6 @@ export class LoginComponent implements OnInit{
               
               });
                 
-                // this.LoginForm.reset()
             }  
               else{
                 this.toaster.error('invalid username or password','' , {
