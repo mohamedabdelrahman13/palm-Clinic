@@ -1,5 +1,7 @@
 .Consultant-form{
     overflow: hidden;
+    position: relative;
+    z-index: 0;
 }
 .form-content{
     border-radius: 10px;

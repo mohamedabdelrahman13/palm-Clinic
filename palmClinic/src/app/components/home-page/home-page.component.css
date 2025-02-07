@@ -1,10 +1,55 @@
 section{
-    background-color: black;
+    /* background-color: black; */
     color: white;
-    /* overflow: hidden; */
+    overflow: hidden;
+    position: relative;
+    z-index: -2;
 }
 
-.home-content{
+.home-description .welcome{
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 12;
+}
+.home-description .welcome h1{
+  font-size: 5rem;
+    color: #80B918;
+}
+.home-description .welcome p{
+  font-size: 2rem;
+}
+.home-description .welcome button{
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+}
+.home-description .welcome button:first-child{
+  background-color: black;
+  color: white;
+  border: 3px solid white;
+  transition: all .2s ease-in-out;
+}
+.home-description .welcome div.translateBtns{
+  margin-top: 50px;
+}
+.home-description .welcome button:first-child:hover{
+  background-color: white;
+  color: black;
+}
+.home-description .welcome button:nth-child(2){
+  background-color: #80B918;
+  color: white;
+  /* border: 3px solid white; */
+}
+.home-description .home-img{
+ text-align: center;
+ animation: palmtree 2.5s infinite ease-in-out;
+ pointer-events: none;
+}
+.lightyellow , .lightgreen{
+  z-index: 10;
+}
+/* .home-content{
   width: 100%;
   background-image: url('/assets/home-bg.png');
   background-size: cover;
@@ -12,10 +57,10 @@ section{
   background-repeat: no-repeat;
   margin-top: -150px;
   z-index: -1;
-}
-@media (max-width: 768px) {
+} */
+/* @media (max-width: 768px) {
   .bg-image {
-    background-size: 150%; /* Adjust the position for tablet-sized screens */
+    background-size: 150%; Adjust the position for tablet-sized screens
   }
 }
 @media (min-width:0px) and (max-width:576px){
@@ -28,7 +73,7 @@ section{
   .home-content{
     height: 90vh;
   }  
-}
+} */
 /* about section Styles */
 .home-items{
   padding: 40px;
@@ -48,6 +93,8 @@ section{
   transition:all 1s;
 
 }
+
+
 
 /* Services section styles */
 .services{
@@ -69,10 +116,11 @@ section{
 .home-items .services h3{
     text-align: center;
     padding: 40px 0 30px 0;
+    font-size: 50px;
     font-weight: 700;
     color: #80B918;
   }
-  @media(min-width:400px){
+  /* @media(min-width:400px){
     .home-items .services h3{
       font-size: 50px;
     }
@@ -87,7 +135,7 @@ section{
     .home-items .services p{
       font-size: 20px;
     }
-  }
+  } */
 .home-items .services p{
     text-align: center;
     font-weight: 300;
@@ -127,4 +175,72 @@ section{
 
 .directionrtl{
   direction: rtl;
+}
+
+@keyframes palmtree{
+  0%{
+    transform: translate(0 , 0);
+  }
+  50%{
+    transform: translate(0 , -20px);
+  }
+  100%{
+    transform: translate(0 , 0);
+  }
+}
+
+
+/* responsive ---------------------------------- */
+@media(max-width:768px){
+  .home-description .welcome h1{
+    font-size: 2.5rem;
+  }
+  .home-description .welcome p{
+    font-size: 1.5rem;
+  }
+  .home-description .welcome button{
+    padding: 5px 10px;
+
+  }
+  .home-items .about h2{
+    font-size: 40px;
+  }
+  .home-items .about h2{
+    font-size: 40px;
+  }
+  .home-items .services h3{
+    font-size: 30px;
+  }
+  .home-items .services p{
+    font-size: 16px;
+  }
+  .home-items .about p{
+    font-size: 16px;
+  }
+}
+@media(max-width:576px){
+  .home-description .welcome h1{
+    font-size: 2rem;
+  }
+  .home-description .welcome p{
+    font-size: 1rem;
+  }
+  .home-description .welcome button{
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    width: 150px;
+    
+  }
+  .home-items .about h2{
+    font-size: 30px;
+  }
+  .home-items .services h2{
+    font-size: 30px;
+  }
+  .home-items .services p{
+    font-size: 15px;
+  }
+  .home-items .about p{
+    font-size: 12px;
+  }
 }

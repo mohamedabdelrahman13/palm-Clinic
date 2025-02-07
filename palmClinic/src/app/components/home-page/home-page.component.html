@@ -1,21 +1,43 @@
 <section [class.arabicFont]="this.currentLanguage">
-    <div class="home-content container-fluid">
+    <!-- <div class="home-content container-fluid">
+    </div> -->
+    <div class="home-description">
+        <div class="home-content row justify-content-center align-items-center">
+            <div class="col-12 col-sm-12 col-md-6">
+                 <div class="welcome ms-5 p-5">
+                    <h1 [class.directionrtl]="this.currentLanguage">{{'HOME.HOMETITLE' | translate}}</h1> 
+                    <p class="mb-4">{{'HOME.HOMEFIRSTDESC'| translate}}</p>
+                    <div *ngIf="!this.currentLanguage" class="btns mt-5">
+                        <button [routerLink]="['/diagnosis']" class="me-2">Start Diagnosis</button>
+                        <button class="">Learn more</button>
+                    </div>
+                    <div *ngIf="this.currentLanguage" class="btns mt-5">
+                        <button [routerLink]="['/diagnosis']" class="me-2">ابدأ التشخيص</button>
+                        <button class="">معرفة المزيد</button>
+                    </div>
+                 </div>    
+            </div>
+            <div class="home-img col-12 col-sm-12 col-md-6">
+                <img appDisableCopies src="https://res.cloudinary.com/dh3ijidjk/image/upload/v1738965520/DatePalm_zmrdcg.png" width="80%" height="70%" alt="">
+            </div>
+        </div>
     </div>
+    <div class="lightyellow light"></div>
+    <div class="lightgreen light"></div>
     <div class="home-items container container-sm-fluid">
         <div class="about">
-            <h2 class="title">Palm clinic</h2>
-            
+            <h2 class="title">Palm clinic</h2>   
             <p class="about-p" #aboutP>
                 {{'HOME.DESCRIPTION'| translate}}
             </p>
         </div>
 
         <!-- services section starts  -->
-        <div class="services mt-5">
-            <h2 class="title">{{'HOME.SERVICES' | translate}}</h2>
-            <div class="row g-4">
+        <div class="services mt-5 mb-5">
+            <h2 class="title mt-5 mb-5">{{'HOME.SERVICES' | translate}}</h2>
+            <div class="row justify-content-between">
                 <div class="services-item item1 col-12 col-md-6" #item1>
-                    <div class="mt-5" style="text-align: center; "> <mat-icon  style=" width: 60px; height: 60px; font-size: 60px; color: #80B918;">account_circle</mat-icon></div>
+                    <div class="mt-5 mb-3" style="text-align: center; "> <mat-icon  style=" width: 60px; height: 60px; font-size: 60px; color: #80B918;">account_circle</mat-icon></div>
                     <h3>{{'HOME.Consultations' | translate}}</h3>
                     <p #consP>{{'HOME.ConsultationsDESC' | translate}}
                         <a [hidden]="this.currentLanguage" routerLink="/Consultation" routerLinkActive="router-link-active" >  try now</a>
@@ -23,7 +45,7 @@
                     </p>
                 </div>
                 <div class="services-item item2 col-12 col-md-6 " #item2>
-                   <div class="mt-5" style="text-align: center; "> <mat-icon  style=" width: 60px; height: 60px; font-size: 60px; color: #80B918;">check_circle</mat-icon></div>
+                   <div class="mt-5 mb-3" style="text-align: center; "> <mat-icon  style=" width: 60px; height: 60px; font-size: 60px; color: #80B918;">check_circle</mat-icon></div>
                     <h3>{{'HOME.DIAGNOSIS' | translate}}</h3>
                     <p>{{'HOME.DIAGNOSISDESC' | translate}}
                         <a [hidden]="this.currentLanguage" routerLink="/diagnosis" routerLinkActive="router-link-active" >try now</a>

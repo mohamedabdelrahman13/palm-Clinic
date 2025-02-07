@@ -19,6 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSnackBarAction,MatSnackBarActions,MatSnackBarLabel} from '@angular/material/snack-bar';
 import { LoginComponent } from './components/login/login.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { DisableCopiesDirective } from './disable-copies.directive';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,7 +33,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomePageComponent,
     ConsultantComponent,
     LoginComponent,
-    UsersConsultationsComponent
+    UsersConsultationsComponent,
+    FooterComponent,
+    DisableCopiesDirective
   ],
   imports: [
     HttpClientModule,
