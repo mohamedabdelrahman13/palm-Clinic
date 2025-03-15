@@ -5,4 +5,4 @@
 [Click here to view the live demo](http://palm-clinic.runasp.net/homePage)
 
 to Run :
-1- open the Folder of the Project and Type (ng serve)
+1- open the Folder of the Project in terminal use the command "ng serve".
