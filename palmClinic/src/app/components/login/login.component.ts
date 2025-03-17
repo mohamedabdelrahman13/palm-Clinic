@@ -68,7 +68,6 @@ export class LoginComponent implements OnInit{
                         timeOut:4000
                       });
                 }
-              
               });
                 
             }  
