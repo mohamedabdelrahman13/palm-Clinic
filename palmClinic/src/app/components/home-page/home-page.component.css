@@ -49,31 +49,6 @@ section{
 .lightyellow , .lightgreen{
   z-index: 10;
 }
-/* .home-content{
-  width: 100%;
-  background-image: url('/assets/home-bg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin-top: -150px;
-  z-index: -1;
-} */
-/* @media (max-width: 768px) {
-  .bg-image {
-    background-size: 150%; Adjust the position for tablet-sized screens
-  }
-}
-@media (min-width:0px) and (max-width:576px){
-  .home-content{
-    height: 60vh;
-  }
-}
-  
-@media(min-width:576px){
-  .home-content{
-    height: 90vh;
-  }  
-} */
 /* about section Styles */
 .home-items{
   padding: 40px;
@@ -131,7 +106,6 @@ section{
 }
 .services-item{
    transition: all 1s;
-   min-width: 200px;
   }
 .home-items .services h2{
     text-align: center;
@@ -149,30 +123,15 @@ section{
     font-weight: 700;
     color: #80B918;
   }
-  /* @media(min-width:400px){
-    .home-items .services h3{
-      font-size: 50px;
-    }
-    .home-items .services p{
-      font-size: 30px;
-    }
-  }
-  @media(max-width:400px){
-    .home-items .services h3{
-      font-size: 30px;
-    }
-    .home-items .services p{
-      font-size: 20px;
-    }
-  } */
 .home-items .services p{
     text-align: center;
     font-weight: 300;
     font-size: 30px;
   }
  .home-items .services-item{
-    border: 1px solid #30FF4F;
+    border: 3px solid #30FF4F;
     border-radius: 20px;
+    padding: 20px;
  }
 
  /* animation */
