@@ -6,11 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { LanguagesService } from '../../services/languages.service';
 import { environment } from '../../Environment/environment';
-// import {MatSnackBar} from '@angular/material/snack-bar';
-// import {MatButtonModule} from '@angular/material/button';
-// import {MatInputModule} from '@angular/material/input';
-// import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { LoaderService } from '../../services/loader.service';
 @Component({
   selector: 'app-consultant',
   templateUrl: './consultant.component.html',
@@ -27,10 +23,12 @@ export class ConsultantComponent implements OnInit{
   constructor(private fb:FormBuilder 
     ,private http:HttpClient
     ,private taost:ToastrService
-    , private language:LanguagesService){
+    , private language:LanguagesService
+    ,private loaderService:LoaderService){
     this.language.getCurrentLang.subscribe((status)=>{this.currentLanguage = status})
   }
   ngOnInit(): void {
+    this.loaderService.loading$.subscribe((status)=>{this.loading = status});
     window.scrollTo(0, 0);
     this.ConsultationForm = this.fb.group({
       Email:['' , Validators.required],
@@ -62,18 +60,11 @@ export class ConsultantComponent implements OnInit{
         
     (response : any)=>{
       console.log(response)
-      this.loading = true;
-       setTimeout(()=>{
-         this.loading = false;
-        } , 5000)
       this.Result = response;
     }
       ,
     error : (err)=>{
       this.loading = true;
-       setTimeout(()=>{
-         this.loading = false;
-        } , 500)
       this.taost.error("Server error , try again later" , '' , {
         timeOut:4000
       })

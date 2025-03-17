@@ -1,5 +1,14 @@
 import { Block } from '@angular/compiler';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit, QueryList, ViewChild, viewChild } from '@angular/core';
+import { AfterViewInit
+  , ChangeDetectorRef
+  , Component
+  , ElementRef,
+   HostListener, 
+   OnDestroy,
+    OnInit, 
+    QueryList,
+     ViewChild, 
+     viewChild } from '@angular/core';
 import { SymptomsService } from '../../services/symptoms.service';
 import { organs } from '../../models/organs.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,6 +20,7 @@ import { LanguagesService } from '../../services/languages.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Subscription } from 'rxjs';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -62,7 +72,8 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
       ,private detector:ChangeDetectorRef
       ,private router:Router
       ,private translate:TranslateService
-      ,private lang:LanguagesService){
+      ,private lang:LanguagesService
+      ,private loaderService:LoaderService){
        this.subscription = this.symptom.getAllData().subscribe({next:(response)=>{
           this.resResp = response;
           this.symptomsList = this.resResp.model;
@@ -98,6 +109,8 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
   
   ngOnInit(): void {
       window.scrollTo(0, 0);
+      
+    this.loaderService.loading$.subscribe((status)=>{this.loading = status});
     this.symptom.isClicked.subscribe((status)=>{
       this.Clicked = status;
     })
@@ -225,11 +238,7 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
     showResult(){
       window.scroll(50 , 50)
       this.body.nativeElement.classList.add('blur-body');
-       this.loading = true;
-       setTimeout(()=>{
-         this.loading = false;
-        } , 2000)
-       this.resultSubscription = this.symptom.getResults().subscribe((response)=>{
+      this.resultSubscription = this.symptom.getResults().subscribe((response)=>{
           this.Result = response;
           if(this.Result.model == null){
             this.isModelNull = true; 
@@ -258,7 +267,7 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
         this.symptom.clearSymptoms();
         this.selectedSymptomsDescriptions = [];
         this.selectedSymptomsDescriptionsAr = [];
-        this.router.navigateByUrl('/Consultation')
+        this.router.navigateByUrl('/Consultation');
       }
 
       switchLangAr(){
@@ -266,8 +275,7 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
       }
       switchLangEn(){
         this.lang.english()
-     
-      }
+     }
 
 
       exportAsPDF(){
@@ -283,31 +291,23 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
           html2canvas(pdfElement, { scale: 2 }).then((canvas) => {
             const imgData = canvas.toDataURL('image/png');
             
-            // Create a new jsPDF instance
             const pdf = new jsPDF('p', 'mm');
-            
-            // Calculate the width and height based on the canvas dimensions
-            const pageWidth = 210; // A4 width in mm
+             const pageWidth = 210; 
             const pageHeight = (canvas.height * pageWidth) / canvas.width; // Maintain aspect ratio
             
-            // Adjust the PDF dimensions dynamically if content overflows
-            if (pageHeight > 297) { // If page height is larger than A4
-              const totalPages = Math.ceil(pageHeight / 297); // Calculate how many pages needed
+            if (pageHeight > 297) { 
+              const totalPages = Math.ceil(pageHeight / 297); 
               
-              // Loop through pages and add content
               for (let page = 0; page < totalPages; page++) {
-                const yPosition = page * 297; // Starting y position for each page
+                const yPosition = page * 297; 
       
-                // Add image section for the current page
                 pdf.addImage(imgData, 'PNG', 0, -yPosition, pageWidth, pageHeight);
       
-                // If not the last page, add a new page
                 if (page < totalPages - 1) {
                   pdf.addPage();
                 }
               }
             } else {
-              // If content fits on one page, just add it once
               pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
             }
             pdfElement.classList.remove('desktop-export');
@@ -321,31 +321,5 @@ export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
         
       }
     }
-  
-  
-  
-  
-  
-  
-  
-  
-  // if(pdfElement){
- 
-
-
-    // html2canvas(pdfElement!).then((canvas) => {
-    //   const imgData = canvas.toDataURL('image/png');
-    //   const pdf = new jsPDF('p', 'mm');
-    //   const imgWidth = 210;
-    //   const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    //   pdf.setFillColor(239, 242, 225); // Light color
-    //   pdf.rect(0, 0, 210, 297, 'F'); // Draw filled rectangle as background
-    //   pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-    //   pdf.save('Diagnosis Results.pdf');
-    
-
-    // });
-  
-
 
 

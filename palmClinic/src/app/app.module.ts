@@ -10,7 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ConsultantComponent } from './components/consultant/consultant.component';
@@ -21,6 +21,8 @@ import { MatSnackBarAction,MatSnackBarActions,MatSnackBarLabel} from '@angular/m
 import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DisableCopiesDirective } from './disable-copies.directive';
+import { loaderInterceptor } from './interceptors/loader.interceptor';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -64,7 +66,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     
   ],
   providers: [
-    provideAnimationsAsync('noop')
+    provideAnimationsAsync('noop'),
+    provideHttpClient(withInterceptors([loaderInterceptor]))
+
   ],
   bootstrap: [AppComponent]
 })

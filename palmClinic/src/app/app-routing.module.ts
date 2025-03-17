@@ -14,7 +14,6 @@ const routes: Routes = [
   {path:'diagnosis' , component:HomeComponent},
   {path:'Consultation' , component:ConsultantComponent},
   {path:'userConsultations' , component:UsersConsultationsComponent , canActivate:[consAuthGuard]},
-  {path:'**' , redirectTo:'/homePage'},
 ];
 
 @NgModule({

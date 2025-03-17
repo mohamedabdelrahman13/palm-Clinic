@@ -105,13 +105,13 @@
 
 <!-- loading section start -->
 <div  class="loading d-flex justify-content-center" *ngIf="this.loading === true">
-<div class="spinner-border text-center" style="color: var(--mainColor);" role="status">        
-</div>
-<img class="spinner-logo" src="assets/Icon.png" alt="">
+    <div class="spinner-border text-center" style="color: var(--mainColor);" role="status">        
+    </div>
+    <img class="spinner-logo" src="assets/Icon.png" alt="">
 </div>
 
 
-<!-- loading section start -->
+<!-- loading section ends -->
 <!-- results when diseases found  (english)-->
 
 <section *ngIf="!this.currentLanguage && isModelHasValue && this.loading === false" class="results container">

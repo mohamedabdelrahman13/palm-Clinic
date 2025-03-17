@@ -7,6 +7,7 @@ import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../Environment/environment';
+import { LoaderService } from '../../services/loader.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,16 +26,17 @@ export class LoginComponent implements OnInit{
     , private http:HttpClient
     , private login:LoginService
     ,private router:Router
-    ,private toaster:ToastrService){
-      this.login.isLoggedIN.subscribe(status =>{
-        this.loggedin = status;
-    });
-    this.login.localStor.subscribe((status) => {
-      this.locals = status;
-    })
-  }
+    ,private toaster:ToastrService
+    ,private loaderService:LoaderService){}
 
   ngOnInit(): void {
+    this.loaderService.loading$.subscribe((status)=>{this.loading = status})
+    this.login.isLoggedIN.subscribe(status =>{
+      this.loggedin = status;
+  });
+  this.login.localStor.subscribe((status) => {
+    this.locals = status;
+  })
     this.LoginForm = this.fb.group({
       userName:['' , Validators.required],
       password:['' , Validators.required],
@@ -42,15 +44,10 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmit(){
-    // console.log(this.locals)
       const headers = new HttpHeaders({
         'Content-Type' : 'application/json'
       });
-            if(this.LoginForm.get('userName')?.value == 'adminXKQ291' && this.LoginForm.get('password')?.value == 'P@ssw0rdZ89!'){
-              this.loading = true;
-                      setTimeout(()=>{
-                      this.loading = false;
-                      } , 1000)
+            if(this.LoginForm.get('userName')?.value == 'adminXKQ291' && this.LoginForm.get('password')?.value == 'P@ssw0rdZ89!'){            
               this.http.post(`${environment.apiBaseUrl}/Admin/Login` , this.LoginForm.value , {headers}).subscribe(
                 {next:(response) =>{
                        if(response){

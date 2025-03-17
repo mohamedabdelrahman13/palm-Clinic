@@ -6,7 +6,13 @@
   --mainColor:#30FF4F;
   --backColor: #0E1011;
 }
-
+.line{
+    display: block;
+    width: 90px;
+    height: 3px;
+    background-color: #80B918;
+    margin: 0px auto 50px auto;
+}
 *{
     margin: 0;
     padding: 0;
@@ -40,7 +46,6 @@ body {
   font-weight: 300;
   font-style: normal;
 } 
-
 
 .custom-toast{
   position: absolute;
