@@ -68,7 +68,8 @@
               ]
             },
             "development": {
-              "optimization": false,
+              "optimization": true,
+              "aot": true,
               "extractLicenses": false,
               "sourceMap": true
             },

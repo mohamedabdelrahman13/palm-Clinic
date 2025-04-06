@@ -309,15 +309,10 @@ h2:last-child span:hover{
     /* position: fixed; */
 }
 
-.results-contents{
-}
-
 .results .title{
     text-align: center;
 }
 .results .title h1{
-    /* font-size: 50px; */
-    /* width: 50%; */
     position: relative;
     display: inline-block;
     margin: 0 auto;
@@ -327,6 +322,32 @@ h2:last-child span:hover{
 }
 
 
+.results .results-item h2{
+    color: #EFF2E1;
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+}
+.results .results-item{
+    background-color: #DDD7C4;
+    border-radius: 10px;    
+    margin: 10px 0 10px 0;
+    text-align: center;
+
+}
+.results h1 , .results .results-item h2 , .results .results-item h3{
+    font-weight: 800;
+}
+.results .results-item span , .results .results-item h4{
+    font-size: 26px;
+}
+.results .results-item span{
+    font-size: 30px;
+    margin-right: 30px;
+}
+.results .results-item .sympt h3{
+    margin-bottom: 20px;
+}
 
 
 
@@ -375,6 +396,20 @@ h2:last-child span:hover{
       width: 160px;
       height: 50px;
       font-size: 20px;
+    }
+    .results-contents .results-item h2{
+     font-size: 20px;  
+    }
+    
+    .results-contents .results-item h3{
+     font-size: 20px;  
+    }
+    .results-contents .results-item h4{
+     font-size: 16px;  
+    }
+    
+    .results-contents .results-item span{
+     font-size: 20px;
     }
     .loading div{
         width: 300px;
@@ -499,6 +534,7 @@ h2:last-child span:hover{
 
 
 
+
 .results h2{
     background-color:  #565656;
     width: 100%;
@@ -508,34 +544,6 @@ h2:last-child span:hover{
     top: -30%;
     left: -60px;
     border-radius: 50%;
-}
-
-.results .results-item h2{
-    color: #EFF2E1;
-    text-align: center;
-    font-size: 30px;
-    padding: 10px;
-}
-.results .results-item{
-    /* border: 2px solid var(--mainColor); */
-    background-color: #DDD7C4;
-    border-radius: 10px;
-    margin: 10px 0 10px 0;
-    text-align: center;
-
-}
-.results h1 , .results .results-item h2 , .results .results-item h3{
-    font-weight: 800;
-}
-.results .results-item span , .results .results-item h4{
-    font-size: 26px;
-}
-.results .results-item span{
-    font-size: 30px;
-    margin-right: 30px;
-}
-.results .results-item .sympt h3{
-    margin-bottom: 20px;
 }
 
 .hide{
