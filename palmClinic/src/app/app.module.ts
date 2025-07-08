@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersConsultationsComponent } from './components/users-consultations/users-consultations.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
+import { DiagnosisComponent } from './components/diagnosis/diagnosis.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,7 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
+    DiagnosisComponent,
     HomePageComponent,
     ConsultantComponent,
     LoginComponent,

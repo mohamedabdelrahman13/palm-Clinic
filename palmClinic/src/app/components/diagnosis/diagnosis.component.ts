@@ -23,11 +23,11 @@ import { Subscription } from 'rxjs';
 import { LoaderService } from '../../services/loader.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  selector: 'app-diagnosis',
+  templateUrl: './diagnosis.component.html',
+  styleUrl: './diagnosis.component.css'
 })
-export class HomeComponent implements OnInit , AfterViewInit , OnDestroy{
+export class DiagnosisComponent implements OnInit , AfterViewInit , OnDestroy{
   @ViewChild('relatedS') relatedS!: ElementRef<HTMLElement>;
   Clicked:boolean = false;
   activeIndex:number =0;

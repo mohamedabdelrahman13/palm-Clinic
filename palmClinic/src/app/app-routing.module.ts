@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
+import { DiagnosisComponent } from './components/diagnosis/diagnosis.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ConsultantComponent } from './components/consultant/consultant.component';
 import { LoginComponent } from './components/login/login.component';
@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:'' , redirectTo:'/homePage' , pathMatch:'full'},
   {path:'homePage' , component:HomePageComponent},
   {path:'login' , component:LoginComponent},
-  {path:'diagnosis' , component:HomeComponent},
+  {path:'diagnosis' , component:DiagnosisComponent},
   {path:'Consultation' , component:ConsultantComponent},
   {path:'userConsultations' , component:UsersConsultationsComponent , canActivate:[consAuthGuard]},
 ];
